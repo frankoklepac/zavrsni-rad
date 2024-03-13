@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn English Tenses</title>
+</head>
+<body>
+  <h1>Cujemo li se?</h1>
+  <!--List of all registered users-->
+  <ul>
+    {% for user in users %}
+      <li>{{ user.username }}</li>
+    {% endfor %}
+  </ul>
+
+
+
+  
+  {% block content %}
+  {% endblock %}
+</body>
+</html>
