@@ -7,16 +7,12 @@
 </head>
 <body>
   <h1>Cujemo li se?</h1>
-  <!--List of all registered users-->
-  <ul>
-    {% for user in users %}
-      <li>{{ user.username }}</li>
-    {% endfor %}
-  </ul>
-
-
-
-  
+  {% if request.user.is_authenticated %}
+    <form method="POST" action="{% url 'home:logout' %}">
+      {% csrf_token %}
+      <button type="submit">Logout</button>
+    </form>
+  {% endif %}
   {% block content %}
   {% endblock %}
 </body>
