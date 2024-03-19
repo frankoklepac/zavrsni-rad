@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import redirect, render
 from .forms import UserRegisterForm
@@ -12,9 +13,9 @@ def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('registration:login')
-    else:
+            form.save() 
+            return redirect('home:login')
+    else:  
         form = UserRegisterForm()
     return render(request, 'registration/register.html', {'form': form})
 
@@ -26,10 +27,17 @@ def login(request):
             password = form.cleaned_data.get('password')
             user = authenticate(username=username, password=password)
             if user is not None:
-                login(request, user)
-                return redirect('learntenses:base')
+                auth_login(request, user)  
+                return redirect('home:index')
             else:
-                return redirect('registration:register')
+                return redirect('home:register')
     else:
         form = AuthenticationForm()
     return render(request, 'registration/login.html', {'form': form})
+
+def logout(request):
+    auth_logout(request)
+    return redirect('home:landing')
+
+def landing(request):
+    return render(request, 'learntenses/landing.html')
