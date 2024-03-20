@@ -8,6 +8,11 @@
 <body>
   <h1>Cujemo li se?</h1>
   {% if request.user.is_authenticated %}
+    <h2>Hello, {{ request.user.username }}</h2>
+  {% endif %}
+  <a href="{% url 'home:index' %}">Home</a>
+  <a href="{% url 'home:profile' %}">Profile</a>
+  {% if request.user.is_authenticated %}
     <form method="POST" action="{% url 'home:logout' %}">
       {% csrf_token %}
       <button type="submit">Logout</button>

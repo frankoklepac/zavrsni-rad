@@ -1,0 +1,14 @@
+
+{% extends 'learntenses/base.html' %}
+
+{% block content %}
+  <h2>Hello, {{ request.user.username }} this is your profile</h2>
+  <!--Display all user information-->
+  <p>Username: {{ request.user.username }}</p>
+  <p>Email: {{ request.user.email }}</p>
+  <p>Name: {{ request.user.userprofile.name }}</p>
+  <p>Age: {{ request.user.userprofile.age }}</p>
+  <p>Date joined: {{ request.user.date_joined }}</p>
+  <a href="{% url 'home:edit_profile' %}">Edit your profile</a>
+  
+{% endblock %}

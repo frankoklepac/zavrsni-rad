@@ -1,0 +1,9 @@
+<h2>Edit your profile</h2>
+<form method="POST" action="{% url 'home:edit_profile' %}">
+  {% csrf_token %}
+  {{ user_form.as_p }}
+  {{ profile_form.as_p }}
+  <button type="submit">Save</button>
+<h2>Want to change your password?</h2>
+<a href="{% url 'home:change_password' %}">Click here!</a>
+</form>
