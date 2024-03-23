@@ -12,6 +12,7 @@
   {% endif %}
   <a href="{% url 'home:index' %}">Home</a>
   <a href="{% url 'home:profile' %}">Profile</a>
+  <a href="{% url 'home:task_list' 'present_simple' %}">Present Simple</a>
   {% if request.user.is_authenticated %}
     <form method="POST" action="{% url 'home:logout' %}">
       {% csrf_token %}

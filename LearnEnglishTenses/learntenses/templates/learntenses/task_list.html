@@ -1,0 +1,18 @@
+{% extends 'learntenses/base.html' %}
+
+{% block content %}
+  <h2>Present Simple Tasks</h2>
+  <ul>
+    {% for user_task in user_tasks %}
+      <li>
+        {% if forloop.first %}
+          <a href="{% url 'home:task_detail' user_task.task.tense user_task.task.id %}" style="color: blue;">{{ user_task.task.name }}</a>
+        {% elif not user_tasks.forloop.counter0.completed %}
+          <span style="color: red;">{{ user_task.task.name }}</span>
+        {% else %}
+          <a href="{% url 'home:task_detail' user_task.task.tense user_task.task.id %}">{{ user_task.task.name }}</a>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

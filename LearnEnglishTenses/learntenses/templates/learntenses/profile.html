@@ -3,7 +3,6 @@
 
 {% block content %}
   <h2>Hello, {{ request.user.username }} this is your profile</h2>
-  <!--Display all user information-->
   <p>Username: {{ request.user.username }}</p>
   <p>Email: {{ request.user.email }}</p>
   <p>Name: {{ request.user.userprofile.name }}</p>
