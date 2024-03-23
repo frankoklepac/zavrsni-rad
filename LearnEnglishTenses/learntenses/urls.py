@@ -11,4 +11,6 @@ urlpatterns = [
     path('profile/', views.profile, name='profile'),
     path('edit_profile/', views.edit_profile, name='edit_profile'),
     path('change_password/', views.change_password, name='change_password'),
+    path('<str:tense_name>/tasks', views.task_list, name='task_list'),
+    path('<str:tense>/task/<int:task_id>', views.task_detail, name='task_detail'),
 ]
