@@ -3,9 +3,11 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import redirect, render
 from .forms import UserRegisterForm, UserProfileEditForm, UserEditForm
-from .models import UserProfile
+from .models import UserProfile, Task, UserTask
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
+from django.http import HttpResponseForbidden
+from django.shortcuts import get_object_or_404
 
 def index(request):
     return render(request, 'learntenses/base.html')
@@ -71,3 +73,53 @@ def change_password(request):
     else:
         form = PasswordChangeForm(request.user)
     return render(request, 'learntenses/change_password.html', {'form': form})
+
+def task_list(request, tense_name):
+    tense_mapping = {
+        'present_simple': 'PS',
+        'present_continuous': 'PC',
+        'present_perfect': 'PP',
+        'past_simple': 'PaS',
+        'past_continuous': 'PaC',
+        'past_perfect': 'PaP',
+        'future_simple': 'FS',
+        'future_continuous': 'FC',
+        'future_perfect': 'FP',
+    }
+    tense = tense_mapping.get(tense_name)
+    tasks = Task.objects.filter(tense=tense).order_by('name')  
+    user_profile = UserProfile.objects.get(user=request.user)
+    user_tasks = UserTask.objects.filter(user=user_profile, task__in=tasks).order_by('task__name')
+    return render(request, 'learntenses/task_list.html', {'tasks': tasks, 'user_tasks': user_tasks})
+
+def task_detail(request, tense, task_id):
+    task = get_object_or_404(Task, id=task_id, tense=tense)
+    user_profile = UserProfile.objects.get(user=request.user)
+    user_task = get_object_or_404(UserTask, user=user_profile, task=task)
+    previous_task = Task.objects.filter(id__lt=task_id, tense=tense).order_by('-id').first()
+    if user_task.completed or (previous_task is not None and UserTask.objects.filter(user=user_profile, task=previous_task, completed=True).exists()):
+        return HttpResponseForbidden()
+    return render(request, 'learntenses/task_detail.html', {'task': task})
+
+def task_complete(request, tense, task_id):
+    task = get_object_or_404(Task, id=task_id, tense=tense)
+    user_profile = UserProfile.objects.get(user=request.user)
+    user_task = get_object_or_404(UserTask, user=user_profile, task=task)
+    if request.method == 'POST':
+        sentence = request.POST.get('sentence')
+        if sentence == task.correct_sentence:
+            user_task.completed = True
+            user_task.save()
+            all_tasks = Task.objects.filter(tense=tense)
+            user_tasks = UserTask.objects.filter(user=user_profile, task__in=all_tasks)
+            if all(user_task.completed for user_task in user_tasks):
+                return redirect('task_list', tense=tense)
+            else:
+                next_task = all_tasks.filter(id__gt=task.id).first()
+                if next_task:
+                    return redirect('task_detail', tense=tense, task_id=next_task.id)
+        else:
+            user_task.attempts += 1
+            user_task.save()
+            return render(request, 'task_detail.html', {'task': task, 'error_message': 'Wrong! Try again.'})
+    return redirect('task_detail', tense=tense, task_id=task_id)
