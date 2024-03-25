@@ -2,6 +2,7 @@
 
 {% block content %}
     <h1>Task {{ task.name }}</h1>
+    <p>Level : {{ task.level }}</p>
     <p>Tense: {{ task.get_tense_display }}</p>
     <p>Sentence: {{ task.sentence }}</p>
     <p>Words: {{ task.words }}</p>
