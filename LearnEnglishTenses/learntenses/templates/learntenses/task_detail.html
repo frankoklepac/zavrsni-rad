@@ -5,6 +5,13 @@
     <p>Level : {{ task.level }}</p>
     <p>Tense: {{ task.get_tense_display }}</p>
     <p>Sentence: {{ task.sentence }}</p>
-    <p>Words: {{ task.words }}</p>
+    {% for word in task.words.split %}
+        <button class="word-button" data-word="{{ word }}">{{ word }}</button>
+    {% endfor %}
+    <br>
+    <br>
+    <button id="check-button">Check</button>
     <p>Correct Words: {{ task.correct_words }}</p>
+
+
 {% endblock %}

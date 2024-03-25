@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Learn English Tenses</title>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn English Tenses</title>
+    {% load static %}
+    <link rel="stylesheet" href="text/css" href="{% static 'learntenses/css/styles.css' }">
 </head>
 <body>
   <h1>Cujemo li se?</h1>
@@ -21,5 +23,6 @@
   {% endif %}
   {% block content %}
   {% endblock %}
+  <script src="{% static 'learntenses/js/scripts.js' %}"></script>
 </body>
 </html>
