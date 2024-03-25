@@ -23,7 +23,7 @@ class Task(models.Model):
         ('FC', 'Future Continuous'),
         ('FP', 'Future Perfect'),
     ]
-    TASK_LEVELS = [
+    TASK_NAMES = [
         ('1', 'Task 1'),
         ('2', 'Task 2'),
         ('3', 'Task 3'),
@@ -31,8 +31,9 @@ class Task(models.Model):
         ('5', 'Task 5'),
         ('6', 'Task 6')
     ]
+    level = models.IntegerField() 
     tense = models.CharField(max_length=3, choices=TENSE_CHOICES)
-    name = models.CharField(max_length=10, choices=TASK_LEVELS)
+    name = models.CharField(max_length=10, choices=TASK_NAMES)
     sentence = models.CharField(max_length=500)
     words = models.CharField(max_length=500)
     correct_words = models.CharField(max_length=500)
@@ -46,6 +47,9 @@ class Task(models.Model):
         if is_new:
             for user_profile in UserProfile.objects.all():
                 UserTask.objects.create(user=user_profile, task=self)
+
+    def get_level(self):
+        return int(self.name)
 
 class UserTask(models.Model):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE) 
