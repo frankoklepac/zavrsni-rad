@@ -1,6 +1,7 @@
 {% extends 'learntenses/base.html' %}
 
 {% block content %}
+    {% load static %}
     <h1>Task {{ task.name }}</h1>
     <p>Level : {{ task.level }}</p>
     <p>Tense: {{ task.get_tense_display }}</p>
@@ -9,9 +10,97 @@
         <button class="word-button" data-word="{{ word }}">{{ word }}</button>
     {% endfor %}
     <br>
-    <br>
-    <button id="check-button">Check</button>
     <p>Correct Words: {{ task.correct_words }}</p>
+    <br>
+    <p id="selected-words" style="display: block;">Selected words:</p>
+    <br>
+    <button class="check-button" data-task-id="{{task.id}}" data-level="{{task.level}}" data-tense="{{task.tense}}" style="display:block;" data-correct-words="{{task.correct_words}}">Check</button>
+    <button id="next-task-button" style="display: none;"></button>
+    <p id ="result"></p>
 
-
+    <script>
+        const nextTaskButton = document.getElementById('next-task-button');
+        const tenseMapping = {
+            'PS': 'present_simple',
+            'PC': 'present_continuous',
+            'PP': 'present_perfect',
+            'PaS': 'past_simple',
+            'PaC': 'past_continuous',
+            'PaP': 'past_perfect',
+            'FS': 'future_simple',
+            'FC': 'future_continuous',
+            'FP': 'future_perfect'
+        }
+        document.querySelectorAll('.check-button').forEach(checkButton => {
+            checkButton.addEventListener('click', () => {
+                let correctWords = checkButton.dataset.correctWords.split(' ');
+                const resultElement = document.getElementById('result');
+                const currentLevel = parseInt(checkButton.getAttribute('data-level'));
+                if (JSON.stringify(correctWords) === JSON.stringify(clickedWords)) {
+                    resultElement.textContent = 'Correct!';
+                    const taskId = checkButton.getAttribute('data-task-id');
+                    fetch(`/home/mark_as_completed/${taskId}/`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === 'success') {
+                            console.log('Task marked as completed');
+                        }
+                    });
+                    if (currentLevel === 6) {
+                        nextTaskButton.textContent = 'Congratulations!';
+                        nextTaskButton.style.display = 'block';
+                        checkButton.style.display = 'none';
+                    }
+                    else {
+                        nextTaskButton.textContent = 'Next Task';
+                        nextTaskButton.style.display = 'block';
+                        checkButton.style.display = 'none';
+                        selectedWordsElement.textContent = '';
+                        
+                    }
+                }
+                else {
+                    resultElement.textContent = 'Incorrect! Try again';
+                    selectedWordsElement.textContent = '';
+                    clickedWords = [];
+    
+                    const taskId = checkButton.getAttribute('data-task-id');
+                    fetch(`/home/increment_attempts/${taskId}/`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === 'success') {
+                            console.log('Attempts incremented');
+                        }
+                    });
+                }
+            });
+        });
+    
+        nextTaskButton.addEventListener('click', () => {
+            const currentTaskId = parseInt(document.querySelector('.check-button').getAttribute('data-task-id'));
+            const currentLevel = parseInt(document.querySelector('.check-button').getAttribute('data-level'));
+            const tense = document.querySelector('.check-button').getAttribute('data-tense');
+            const nextTaskId = currentTaskId + 1;
+            const currentUrl = window.location.pathname;
+            const baseUrl = currentUrl.substring(0, currentUrl.lastIndexOf('/'));
+            if (currentLevel === 6) { 
+                const tenseUrl = tenseMapping[tense];
+                window.location.href = `/home/${tenseUrl}/tasks`;
+            } else {
+                window.location.href = `${baseUrl}/${nextTaskId}`;
+            }
+        });
+    </script>
 {% endblock %}
