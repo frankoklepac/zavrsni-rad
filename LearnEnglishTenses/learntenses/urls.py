@@ -13,4 +13,6 @@ urlpatterns = [
     path('change_password/', views.change_password, name='change_password'),
     path('<str:tense_name>/tasks', views.task_list, name='task_list'),
     path('<str:tense>/task/<int:task_id>', views.task_detail, name='task_detail'),
+    path('increment_attempts/<int:task_id>/', views.increment_attempts, name='increment_attempts'),
+    path('mark_as_completed/<int:task_id>/', views.mark_as_completed, name='mark_as_completed')
 ]
