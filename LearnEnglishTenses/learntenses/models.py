@@ -56,6 +56,10 @@ class UserTask(models.Model):
     task = models.ForeignKey(Task, on_delete=models.CASCADE)
     completed = models.BooleanField(default=False)
     attempts = models.IntegerField(default=0)
-
+ 
     def __str__ (self):
         return f"{self.user} - {self.task}"
+    
+    def mark_as_completed(self):
+        self.completed = True
+        self.save()
