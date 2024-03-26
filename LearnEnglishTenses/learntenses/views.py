@@ -9,7 +9,9 @@ from django.contrib.auth import update_session_auth_hash
 from django.http import HttpResponseForbidden
 from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_http_methods
+from django.views.decorators.http import require_http_methods, require_POST
+from django.http import JsonResponse
+
 
 def index(request):
     return render(request, 'learntenses/base.html')
@@ -102,10 +104,6 @@ def task_list(request, tense_name):
         user_tasks[0].locked = False 
         for i in range(1, len(user_tasks)):
             user_tasks[i].locked = not user_tasks[i-1].completed
-
-    for user_task in user_tasks:
-        print(user_task.task.name, user_task.locked) 
-
     return render(request, 'learntenses/task_list.html', {'tasks': tasks, 'user_tasks': user_tasks})
 
 @csrf_exempt
@@ -119,25 +117,20 @@ def task_detail(request, tense, task_id):
         return HttpResponseForbidden()
     return render(request, 'learntenses/task_detail.html', {'task': task})
 
-def task_complete(request, tense, task_id):
-    task = get_object_or_404(Task, id=task_id, tense=tense)
+@csrf_exempt
+def increment_attempts(request, task_id):
     user_profile = UserProfile.objects.get(user=request.user)
+    task = get_object_or_404(Task, id=task_id)
     user_task = get_object_or_404(UserTask, user=user_profile, task=task)
-    if request.method == 'POST':
-        sentence = request.POST.get('sentence')
-        if sentence == task.correct_sentence:
-            user_task.completed = True
-            user_task.save()
-            all_tasks = Task.objects.filter(tense=tense)
-            user_tasks = UserTask.objects.filter(user=user_profile, task__in=all_tasks)
-            if all(user_task.completed for user_task in user_tasks):
-                return redirect('task_list', tense=tense)
-            else:
-                next_task = all_tasks.filter(id__gt=task.id).first()
-                if next_task:
-                    return redirect('task_detail', tense=tense, task_id=next_task.id)
-        else:
-            user_task.attempts += 1
-            user_task.save()
-            return render(request, 'task_detail.html', {'task': task, 'error_message': 'Wrong! Try again.'})
-    return redirect('task_detail', tense=tense, task_id=task_id)
+
+    user_task.attempts += 1
+    user_task.save()
+
+    return JsonResponse({'status': 'success'})
+
+@csrf_exempt
+@require_POST
+def mark_as_completed(request, task_id):
+    user_task = get_object_or_404(UserTask, user=request.user.userprofile, task_id=task_id)
+    user_task.mark_as_completed()
+    return JsonResponse({'status': 'success'})
