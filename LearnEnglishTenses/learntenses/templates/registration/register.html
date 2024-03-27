@@ -19,16 +19,18 @@
     <div>
       <h1>Create a profile</h1>
     </div>
-    <form method="POST">
-      {% csrf_token %}
-      {{ form.name.label_tag }} {{ form.name }}
-      {{ form.username.label_tag }} {{ form.username }}
-      {{ form.age.label_tag }} {{ form.age }}
-      {{ form.email.label_tag }} {{ form.email }}
-      {{ form.password1.label_tag }} {{ form.password1 }}
-      {{ form.password2.label_tag }} {{ form.password2 }}
-      <button type="submit">Register</button>
-    </form>  
+    <div class="register-box">
+      <form method="POST" class="register-form">
+        {% csrf_token %}
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="number" name="age" placeholder="Age" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password1" placeholder="Password" required>
+        <input type="password" name="password2" placeholder="Confirm Password" required>
+        <button type="submit" class="register-btn">Register</button>
+      </form>
+    </div>
   </div>
 </body>
 </html>

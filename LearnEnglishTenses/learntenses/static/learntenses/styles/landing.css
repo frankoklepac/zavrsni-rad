@@ -87,10 +87,3 @@ body {
   color: #F9F6EE;
   transition: 0.6s;
 }
-
-.cointainer-register form {
-  display:flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
