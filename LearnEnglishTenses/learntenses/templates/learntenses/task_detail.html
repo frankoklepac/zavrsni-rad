@@ -42,8 +42,8 @@
                     fetch(`/home/mark_as_completed/${taskId}/`, {
                         method: 'POST',
                         headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                            'X-CSRFToken': getCookie('csrftoken'),
+                            'Content-Type': 'application/json'
                         }
                     })
                     .then(response => response.json())

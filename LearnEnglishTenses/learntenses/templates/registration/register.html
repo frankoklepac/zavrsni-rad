@@ -1,10 +1,35 @@
-<form method="POST">
-  {% csrf_token %}
-  {{ form.name.label_tag }} {{ form.name }}
-  {{ form.username.label_tag }} {{ form.username }}
-  {{ form.age.label_tag }} {{ form.age }}
-  {{ form.email.label_tag }} {{ form.email }}
-  {{ form.password1.label_tag }} {{ form.password1 }}
-  {{ form.password2.label_tag }} {{ form.password2 }}
-  <button type="submit">Register</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register</title>
+  {% load static %}
+  <link href="{% static 'learntenses/styles/register.css' %}" rel="stylesheet">
+</head>
+<body>
+  <div class="header-register">
+    <div>
+        <a href="{% url 'home:login' %}">
+        <button class="login-btn">Login</button>
+      </a>
+    </div>
+  </div>
+  <div class="container-register">
+    <div>
+      <h1>Create a profile</h1>
+    </div>
+    <form method="POST">
+      {% csrf_token %}
+      {{ form.name.label_tag }} {{ form.name }}
+      {{ form.username.label_tag }} {{ form.username }}
+      {{ form.age.label_tag }} {{ form.age }}
+      {{ form.email.label_tag }} {{ form.email }}
+      {{ form.password1.label_tag }} {{ form.password1 }}
+      {{ form.password2.label_tag }} {{ form.password2 }}
+      <button type="submit">Register</button>
+    </form>  
+  </div>
+</body>
+</html>
+

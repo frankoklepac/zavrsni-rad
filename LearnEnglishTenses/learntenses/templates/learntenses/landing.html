@@ -1,6 +1,32 @@
-<h1>Welcome to LearnTenses</h1>
-<p>LearnTenses is a web application that helps you learn English tenses.</p>
-<p>It is a simple and easy to use application that will help you learn English tenses in no time.</p>
-<p>Register now and start learning English tenses.</p>
-<p>Already have an account? <a href="{% url 'home:login' %}">Login</a></p>
-<p>Don't have an account? <a href="{% url 'home:register' %}">Register</a></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Learn English Tenses!</title>
+  {% load static %}
+  <link href="{% static 'learntenses/styles/landing.css' %}" rel="stylesheet">
+</head>
+<body>
+  <div class="header-landing">
+    <h1>Learn English Tenses</h1>
+  </div>
+  <div class="container-landing">
+    <div>
+      <p>A fun and effective way to learn English tenses, for free!</p>
+    </div>
+    <div class="buttons-landing">
+      <a href="{% url 'home:register' %}">
+        <div>
+          <button class="register-btn">GET STARTED</button>
+        </div>
+      </a>
+      <a href="{% url 'home:login' %}">
+        <div>
+          <button class="login-btn">I ALREADY HAVE AN ACCOUNT</button>
+        </div>
+      </a>
+    </div>
+  </div>
+</body>
+</html>
