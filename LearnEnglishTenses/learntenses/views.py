@@ -113,8 +113,10 @@ def task_detail(request, tense, task_id):
     user_profile = UserProfile.objects.get(user=request.user)
     user_task = get_object_or_404(UserTask, user=user_profile, task=task)
     previous_task = Task.objects.filter(id__lt=task_id, tense=tense).order_by('-id').first()
-    if user_task.completed and (previous_task is not None and UserTask.objects.filter(user=user_profile, task=previous_task, completed=True).exists()):
+
+    if not user_task.completed and (previous_task is not None and not UserTask.objects.filter(user=user_profile, task=previous_task, completed=True).exists()):
         return HttpResponseForbidden()
+
     return render(request, 'learntenses/task_detail.html', {'task': task})
 
 @csrf_exempt
