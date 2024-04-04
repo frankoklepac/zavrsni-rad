@@ -39,6 +39,17 @@
                 if (JSON.stringify(correctWords) === JSON.stringify(clickedWords)) {
                     resultElement.textContent = 'Correct!';
                     const taskId = checkButton.getAttribute('data-task-id');
+                    if (currentLevel === 6) {
+                        nextTaskButton.textContent = 'Congratulations!';
+                        nextTaskButton.style.display = 'block';
+                        checkButton.style.display = 'none';
+                    }
+                    else {
+                        nextTaskButton.textContent = 'Next Task';
+                        nextTaskButton.style.display = 'block';
+                        checkButton.style.display = 'none';
+                        selectedWordsElement.textContent = '';
+                    }
                     fetch(`/home/mark_as_completed/${taskId}/`, {
                         method: 'POST',
                         headers: {
@@ -51,19 +62,7 @@
                         if (data.status === 'success') {
                             console.log('Task marked as completed');
                         }
-                    });
-                    if (currentLevel === 6) {
-                        nextTaskButton.textContent = 'Congratulations!';
-                        nextTaskButton.style.display = 'block';
-                        checkButton.style.display = 'none';
-                    }
-                    else {
-                        nextTaskButton.textContent = 'Next Task';
-                        nextTaskButton.style.display = 'block';
-                        checkButton.style.display = 'none';
-                        selectedWordsElement.textContent = '';
-                        
-                    }
+                    })
                 }
                 else {
                     resultElement.textContent = 'Incorrect! Try again';
