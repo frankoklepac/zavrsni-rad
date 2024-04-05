@@ -1,5 +1,25 @@
-<form method="POST">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Log in</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  {% load static %}
+  <link href="{% static 'learntenses/styles/login.css' %}" rel="stylesheet">
+</head>
+<body>
+  <div class="container-login">
+    <div>
+      <h1>Log in</h1>
+    </div>
+    <div class="login-box">
+      <form method="POST" class="login-form">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Username" class="login-input" required>
+        <input type="password" name="password" placeholder="Password" class="login-input" required>
+        <button type="submit" class="login-btn">Log in</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
