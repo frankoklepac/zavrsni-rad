@@ -12,39 +12,60 @@
     <div class="navigation">
       <h1>Learn English Tenses</h1>
       {% if request.user.is_superuser %}
-        <a href="{% url 'admin:index' %}">Admin</a>
+        <a href="{% url 'admin:index' %}">
+          <img class="icon" src="{% static 'learntenses/images/admin-panel.png' %}" alt="">
+          Admin Panel
+        </a>
         {% if request.user.is_authenticated %}
-          <a href="{% url 'home:create_task' %}">Create tasks</a>
-          <a href="{% url 'home:manage_tasks' %}">Manage tasks</a>
+          <a href="{% url 'home:create_task' %}">
+            <img class="icon" src="{% static 'learntenses/images/plus.png' %}" alt="">
+            Create tasks
+          </a>
+          <a href="{% url 'home:manage_tasks' %}">
+            <img class="icon" src="{% static 'learntenses/images/manage.png' %}" alt="">
+            Manage tasks
+          </a>
           <form method="POST" action="{% url 'home:logout' %}">
             {% csrf_token %}
-            <button type="submit">Logout</button>
+            <button type="submit" class="logout-link">
+              <img class="icon" src="{% static 'learntenses/images/logout.png' %}" alt="">
+              Logout
+            </button>
           </form>
         {% endif %}
       {% else %}
         <a href="{% url 'home:index' %}">
-          <img src="{% static 'learntenses/images/home.png' %}" alt="">
+          <img class="icon" src="{% static 'learntenses/images/home.png' %}" alt="">
           Home
         </a>
         <a href="#">
-          <img src="{% static 'learntenses/images/learn.png' %}" alt="">
+          <img class="icon" src="{% static 'learntenses/images/learn.png' %}" alt="">
           Learn
         </a>
-        <a href="#">
-          <img src="{% static 'learntenses/images/solve-tasks.png' %}" alt="">
+        <a href="#" id="solve-tasks">
+          <img class="icon" src="{% static 'learntenses/images/solve-tasks.png' %}" alt="">
           Solve tasks
         </a>
-        <a href="{% url 'home:task_list' 'present_simple' %}">Present Simple</a>
-        <a href="{% url 'home:task_list' 'present_continuous' %}">Present Continuous</a>
+        <div id="tasks" style="display: none;">
+          <a href="{% url 'home:task_list' 'present_simple' %}">Present Simple</a>
+          <a href="{% url 'home:task_list' 'present_continuous' %}">Present Continuous</a>
+          <a href="{% url 'home:task_list' 'present_perfect' %}">Present Perfect</a>
+          <a href="{% url 'home:task_list' 'past_simple' %}">Past Simple</a>
+          <a href="{% url 'home:task_list' 'past_continuous' %}">Past Continuous</a>
+          <a href="{% url 'home:task_list' 'past_perfect' %}">Past Perfect</a>
+          <a href="{% url 'home:task_list' 'future_simple' %}">Future Simple</a>
+          <a href="{% url 'home:task_list' 'future_continuous' %}">Future Continuous</a>
+          <a href="{% url 'home:task_list' 'future_perfect' %}">Future Perfect</a>
+        </div>
         <a href="{% url 'home:profile' %}">
-          <img src="{% static 'learntenses/images/profile.png' %}" alt="">
+          <img class="icon" src="{% static 'learntenses/images/profile.png' %}" alt="">
           Profile
         </a>
         {% if request.user.is_authenticated %}
           <form method="POST" action="{% url 'home:logout' %}">
             {% csrf_token %}
-            <button type="submit">
-              <img src="{% static 'learntenses/images/logout.png' %}" alt="">
+            <button type="submit" class="logout-link">
+              <img class="icon" src="{% static 'learntenses/images/logout.png' %}" alt="">
               Logout
             </button>
           </form>
@@ -56,6 +77,8 @@
       {% endblock %}
     </div>
   </div>
-  <!--<script src="{% static 'learntenses/js/scripts.js' %}"></script>-->
+  <script src="{% static 'learntenses/js/scripts.js' %}">
+
+  </script>
 </body>
 </html>

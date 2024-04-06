@@ -1,2 +1,5 @@
-```Currently empty because of an error where the file is not being loaded correctly.```
-```Will try to fix this issue in the future.```
+document.getElementById('solve-tasks').addEventListener('click', function(event) {
+  event.preventDefault();
+  var tasks = document.getElementById('tasks');
+  tasks.style.display = tasks.style.display === 'none' ? 'block' : 'none';
+});
