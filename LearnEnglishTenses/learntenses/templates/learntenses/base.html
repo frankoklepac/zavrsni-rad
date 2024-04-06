@@ -1,46 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learn English Tenses</title>
-    {% load static %}
-    <link href="{% static 'learntenses/styles/style.css' %}" rel="stylesheet">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn English Tenses</title>
+  {% load static %}
+  <link href="{% static 'learntenses/styles/base.css' %}" rel="stylesheet">
 </head>
 <body>
-  <h1>Cujemo li se?</h1>
-  {% if request.user.is_authenticated %}
-    {% if request.user.is_superuser %}
-      <h2>Welcome Admin</h2>
-    {% else %}
-      <h2>Hello, {{ request.user.username }}</h2>
-    {% endif %}
-  {% endif %}
-
-  {% if request.user.is_superuser %}
-    <a href="{% url 'admin:index' %}">Admin</a>
-    {% if request.user.is_authenticated %}
-      <a href="{% url 'home:create_task' %}">Create tasks</a>
-      <a href="{% url 'home:manage_tasks' %}">Manage tasks</a>
-      <form method="POST" action="{% url 'home:logout' %}">
-        {% csrf_token %}
-        <button type="submit">Logout</button>
-      </form>
-    {% endif %}
-  {% else %}
-    <a href="{% url 'home:index' %}">Home</a>
-    <a href="{% url 'home:profile' %}">Profile</a>
-    <a href="{% url 'home:task_list' 'present_simple' %}">Present Simple</a>
-    <a href="{% url 'home:task_list' 'present_continuous' %}">Present Continuous</a>
-    {% if request.user.is_authenticated %}
-      <form method="POST" action="{% url 'home:logout' %}">
-        {% csrf_token %}
-        <button type="submit">Logout</button>
-      </form>
-    {% endif %}
-  {% endif %}
-  {% block content %}
-  {% endblock %}
+  <div class="container">
+    <div class="navigation">
+      <h1>Learn English Tenses</h1>
+      {% if request.user.is_superuser %}
+        <a href="{% url 'admin:index' %}">Admin</a>
+        {% if request.user.is_authenticated %}
+          <a href="{% url 'home:create_task' %}">Create tasks</a>
+          <a href="{% url 'home:manage_tasks' %}">Manage tasks</a>
+          <form method="POST" action="{% url 'home:logout' %}">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+          </form>
+        {% endif %}
+      {% else %}
+        <a href="{% url 'home:index' %}">
+          <img src="{% static 'learntenses/images/home.png' %}" alt="">
+          Home
+        </a>
+        <a href="#">
+          <img src="{% static 'learntenses/images/learn.png' %}" alt="">
+          Learn
+        </a>
+        <a href="#">
+          <img src="{% static 'learntenses/images/solve-tasks.png' %}" alt="">
+          Solve tasks
+        </a>
+        <a href="{% url 'home:task_list' 'present_simple' %}">Present Simple</a>
+        <a href="{% url 'home:task_list' 'present_continuous' %}">Present Continuous</a>
+        <a href="{% url 'home:profile' %}">
+          <img src="{% static 'learntenses/images/profile.png' %}" alt="">
+          Profile
+        </a>
+        {% if request.user.is_authenticated %}
+          <form method="POST" action="{% url 'home:logout' %}">
+            {% csrf_token %}
+            <button type="submit">
+              <img src="{% static 'learntenses/images/logout.png' %}" alt="">
+              Logout
+            </button>
+          </form>
+        {% endif %}
+      {% endif %}
+    </div>
+    <div class="content">
+      {% block content %}
+      {% endblock %}
+    </div>
+  </div>
   <!--<script src="{% static 'learntenses/js/scripts.js' %}"></script>-->
 </body>
 </html>
