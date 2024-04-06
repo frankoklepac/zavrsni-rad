@@ -8,6 +8,9 @@ class UserProfile(models.Model):
     age = models.IntegerField()
     date_joined = models.DateTimeField(auto_now_add=True)
 
+    def completed_tasks_by_tense(self):
+        return self.usertask_set.filter(completed=True).values('task__tense').annotate(count=models.Count('task__tense'))
+
     def __str__(self):
         return self.user.username
 
