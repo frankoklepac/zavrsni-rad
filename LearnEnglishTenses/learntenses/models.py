@@ -50,6 +50,9 @@ class Task(models.Model):
     words = models.CharField(max_length=500)
     correct_words = models.CharField(max_length=500)
 
+    class Meta:
+        unique_together = ('name', 'tense')
+
     def __str__(self):
         return f"{self.get_tense_display()} - {self.get_name_display()}"
     
