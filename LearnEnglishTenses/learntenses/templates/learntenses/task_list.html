@@ -1,7 +1,7 @@
 {% extends 'learntenses/base.html' %}
 
 {% block content %}
-  <h2>Present Simple Tasks</h2>
+  <h2>{{ tense_name }} Tasks</h2>
   <ul>
     {% for user_task in user_tasks %}
         <li style="color: {{ user_task.locked|yesno:'red,blue' }};">

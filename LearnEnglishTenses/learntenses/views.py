@@ -96,6 +96,17 @@ def task_list(request, tense_name):
         'future_continuous': 'FC',
         'future_perfect': 'FP',
     }
+    tense_name_mapping = {
+        'present_simple': 'Present Simple',
+        'present_continuous': 'Present Continuous',
+        'present_perfect': 'Present Perfect',
+        'past_simple': 'Past Simple',
+        'past_continuous': 'Past Continuous',
+        'past_perfect': 'Past Perfect',
+        'future_simple': 'Future Simple',
+        'future_continuous': 'Future Continuous',
+        'future_perfect': 'Future Perfect',
+    }
     tense = tense_mapping.get(tense_name)
     tasks = Task.objects.filter(tense=tense).order_by('name')  
     user_profile = UserProfile.objects.get(user=request.user)
@@ -104,7 +115,7 @@ def task_list(request, tense_name):
         user_tasks[0].locked = False 
         for i in range(1, len(user_tasks)):
             user_tasks[i].locked = not user_tasks[i-1].completed
-    return render(request, 'learntenses/task_list.html', {'tasks': tasks, 'user_tasks': user_tasks})
+    return render(request, 'learntenses/task_list.html', {'tasks': tasks, 'user_tasks': user_tasks, 'tense_name': tense_name_mapping.get(tense_name)})
 
 @csrf_exempt
 @require_http_methods(['GET','POST'])
