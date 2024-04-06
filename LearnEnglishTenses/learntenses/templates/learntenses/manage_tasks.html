@@ -1,0 +1,58 @@
+{% extends 'learntenses/base.html' %}
+
+{% block content %}
+  {% for tense_code, tasks in tenses.items %}
+    <h2>
+      {% if tense_code == 'PS' %}
+        Present Simple Tasks
+      {% elif tense_code == 'PC' %}
+        Present Continuous Tasks
+      {% elif tense_code == 'PP' %}
+        Present Perfect Tasks
+      {% elif tense_code == 'PaS' %}
+        Past Simple Tasks
+      {% elif tense_code == 'PaC' %}
+        Past Continuous Tasks
+      {% elif tense_code == 'PaP' %}
+        Past Perfect Tasks
+      {% elif tense_code == 'FS' %}
+        Future Simple Tasks
+      {% elif tense_code == 'FC' %}
+        Future Continuous Tasks
+      {% elif tense_code == 'FP' %}
+        Future Perfect Tasks
+      {% endif %}
+    </h2>
+    <ul>
+      {% for task in tasks %}
+        <li>
+          Task {{ task.level }}: {{ task.sentence }} 
+          <button class="delete-task" data-task-id="{{ task.id }}">Delete task</button>
+          <a href="{% url 'home:edit_task' task.id %}"><button class="edit-task" data-task-id="{{ task.id }}">Edit task</button></a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endfor %}
+
+  <script>
+    document.querySelectorAll('.delete-task').forEach(function(button) {
+      button.addEventListener('click', function() {
+        var taskId = this.dataset.taskId;
+        fetch('/home/delete_task/' + taskId + '/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': '{{ csrf_token }}'
+          },
+          body: JSON.stringify({})
+        }).then(function(response) {
+          if (response.ok) {
+            button.parentElement.remove();
+          } else {
+            console.error('Failed to delete task');
+          }
+        });
+      });
+    });
+  </script>
+{% endblock %}
