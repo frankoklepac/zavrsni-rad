@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate, login as auth_login, update_sessio
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import redirect, render
-from .forms import UserRegisterForm, UserProfileEditForm, UserEditForm
+from .forms import UserRegisterForm, UserProfileEditForm, UserEditForm, TaskForm
 from .models import UserProfile, Task, UserTask
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
@@ -136,3 +136,41 @@ def mark_as_completed(request, task_id):
     user_task = get_object_or_404(UserTask, user=request.user.userprofile, task_id=task_id)
     user_task.mark_as_completed()
     return JsonResponse({'status': 'success'})
+
+def create_task(request):
+    tasks = Task.objects.all()
+    tenses = {choice[0]: [] for choice in Task.TENSE_CHOICES}
+    for task in tasks:
+        tenses[task.tense].append(task)
+    if request.method == 'POST':
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home:create_task')
+    else:
+        form = TaskForm()
+    return render(request, 'learntenses/create_task.html', {'form': form, 'tenses':tenses})
+
+def manage_tasks(request):
+    tasks = Task.objects.all()
+    tenses = {choice[0]: [] for choice in Task.TENSE_CHOICES}
+    for task in tasks:
+        tenses[task.tense].append(task)
+    return render(request, 'learntenses/manage_tasks.html', {'tenses': tenses})
+
+@require_POST
+def delete_task(request, task_id):
+    task = get_object_or_404(Task, id=task_id)
+    task.delete()
+    return redirect('home:create_task')
+
+def edit_task(request, task_id):
+    task = get_object_or_404(Task, id=task_id)
+    if request.method == 'POST':
+        form = TaskForm(request.POST, instance=task)
+        if form.is_valid():
+            form.save()
+            return redirect('home:create_task')
+    else:
+        form = TaskForm(instance=task)
+    return render(request, 'learntenses/edit_task.html', {'form': form})

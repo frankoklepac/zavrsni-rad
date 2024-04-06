@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import UserProfile
+from .models import UserProfile, Task
 
 class UserRegisterForm(UserCreationForm):
     name = forms.CharField(max_length=30)
@@ -28,3 +28,8 @@ class UserEditForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'email']
+
+class TaskForm(forms.ModelForm):
+    class Meta:
+        model = Task
+        fields = ['level', 'tense', 'name', 'sentence', 'words', 'correct_words']
