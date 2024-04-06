@@ -17,9 +17,8 @@
     <button class="check-button" data-task-id="{{task.id}}" data-level="{{task.level}}" data-tense="{{task.tense}}" style="display:block;" data-correct-words="{{task.correct_words}}">Check</button>
     <button id="next-task-button" style="display: none;"></button>
     <p id ="result"></p>
-
+    
     <script>
-
         function getCookie(name) {
             let cookieValue = null;
             if (document.cookie && document.cookie !== '') {
@@ -34,6 +33,21 @@
             }
             return cookieValue;
         }
+        let clickedWords = [];
+        const selectedWordsElement = document.getElementById('selected-words');
+        document.querySelectorAll('.word-button').forEach(button => {
+            button.addEventListener('click', () => {
+                let word = button.textContent;
+                let index = clickedWords.indexOf(word);
+                if (index === -1) {
+                    clickedWords.push(word);
+                } else {
+                    clickedWords.splice(index, 1);
+                }
+                selectedWordsElement.textContent = "Selected words:" + clickedWords.join(' ');
+                console.log(clickedWords); 
+            });
+        });
         const nextTaskButton = document.getElementById('next-task-button');
         const tenseMapping = {
             'PS': 'present_simple',
