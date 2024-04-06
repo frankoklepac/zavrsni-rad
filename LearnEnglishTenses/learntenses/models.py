@@ -31,7 +31,16 @@ class Task(models.Model):
         ('5', 'Task 5'),
         ('6', 'Task 6')
     ]
-    level = models.IntegerField() 
+    LEVELS = {
+        '1' : 1,
+        '2' : 2,
+        '3' : 3,
+        '4' : 4,
+        '5' : 5,
+        '6' : 6,
+    }
+        
+    level = models.IntegerField(blank=True, null=True) 
     tense = models.CharField(max_length=3, choices=TENSE_CHOICES)
     name = models.CharField(max_length=10, choices=TASK_NAMES)
     sentence = models.CharField(max_length=500)
@@ -42,6 +51,7 @@ class Task(models.Model):
         return f"{self.get_tense_display()} - {self.get_name_display()}"
     
     def save(self, *args, **kwargs):
+        self.level = self.LEVELS[self.name]
         is_new = self.pk is None
         super().save(*args, **kwargs) 
         if is_new:
