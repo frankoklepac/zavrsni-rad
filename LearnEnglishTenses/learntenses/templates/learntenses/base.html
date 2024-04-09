@@ -25,13 +25,13 @@
             <img class="icon" src="{% static 'learntenses/images/manage.png' %}" alt="">
             Manage tasks
           </a>
-          <form method="POST" action="{% url 'home:logout' %}">
+          <form id="logout-form" method="POST" action="{% url 'home:logout' %}">
             {% csrf_token %}
-            <button type="submit" class="logout-link">
-              <img class="icon" src="{% static 'learntenses/images/logout.png' %}" alt="">
-              Logout
-            </button>
           </form>
+          <a href="#" onclick="document.getElementById('logout-form').submit();">
+            <img class="icon" src="{% static 'learntenses/images/logout.png' %}" alt="">
+            Logout
+          </a>
         {% endif %}
       {% else %}
         <a href="{% url 'home:index' %}">
@@ -62,13 +62,13 @@
           Profile
         </a>
         {% if request.user.is_authenticated %}
-          <form method="POST" action="{% url 'home:logout' %}">
+          <form id="logout-form" method="POST" action="{% url 'home:logout' %}">
             {% csrf_token %}
-            <button type="submit" class="logout-link">
-              <img class="icon" src="{% static 'learntenses/images/logout.png' %}" alt="">
-              Logout
-            </button>
           </form>
+          <a href="#" onclick="document.getElementById('logout-form').submit();">
+            <img class="icon" src="{% static 'learntenses/images/logout.png' %}" alt="">
+            Logout
+          </a>
         {% endif %}
       {% endif %}
     </div>

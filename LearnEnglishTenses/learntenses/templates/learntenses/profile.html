@@ -11,7 +11,6 @@
   <a href="{% url 'home:edit_profile' %}">Edit your profile</a>
   
 <h1>Statistics</h1>
-<h2>Present Simple</h2>
 {% for tense in user.userprofile.completed_tasks_by_tense %}
     <p>{{ tense.task__tense }}: {{ tense.count }}</p>
 {% endfor %}
