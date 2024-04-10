@@ -170,9 +170,14 @@ def create_task(request):
 def manage_tasks(request):
     tasks = Task.objects.all()
     tenses = {choice[0]: [] for choice in Task.TENSE_CHOICES}
+
+    present_tenses = ['PS', 'PC', 'PP']
+    past_tenses = ['PaS', 'PaC', 'PaP']
+    future_tenses = ['FS', 'FC', 'FP']
+
     for task in tasks:
         tenses[task.tense].append(task)
-    return render(request, 'learntenses/manage_tasks.html', {'tenses': tenses})
+    return render(request, 'learntenses/manage_tasks.html', {'tenses': tenses, 'present_tenses': present_tenses, 'past_tenses': past_tenses, 'future_tenses': future_tenses})
 
 @require_POST
 def delete_task(request, task_id):
