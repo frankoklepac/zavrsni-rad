@@ -1,29 +1,51 @@
 {% extends 'learntenses/base.html' %}
 
+{% block extra_css %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'learntenses/styles/create_task.css' %}">
+{% endblock %}
+
 {% block content %}
-  <h2>Create Task</h2>
-  <form method="POST">
-    {% csrf_token %}
-    <div class="form-group">
-      {{ form.tense.label_tag }}
-      {{ form.tense }}
+
+  <div class = "create-task-card">
+    <div>
+      <h1>Create a new task</h1>
     </div>
-    <div class="form-group">
-      {{ form.name.label_tag }}
-      {{ form.name }}
+    {% if form.non_field_errors %}
+      <div class="alert alert-danger">
+        {{ form.non_field_errors }}
+      </div>
+    {% endif %}
+    <div class= "create-task-form">
+      <form method="POST">
+        {% csrf_token %}
+        <div class="form-container">
+          <div class="form-group">
+            {{ form.tense.label_tag }}
+            {{ form.tense }}
+          </div>
+          <div class="form-group">
+            <div class="unselectable-label">Task level</div>
+            {{ form.name }}
+          </div>
+          <div class="form-group">
+            {{ form.sentence.label_tag }}
+            <textarea id="id_form-sentence" name="sentence">{{ form.sentence.value|default_if_none:'' }}</textarea>
+            <small class="form-text">Input the sentence. Use '{}' where the missing word should be.</small>
+          </div>
+          <div class="form-group">
+            <div class="unselectable-label">Possible choices</div>
+            <textarea id="id_form-words" name="words">{{ form.words.value|default_if_none:'' }}</textarea>
+            <small class="form-text">Input words, each separated by a single space</small>
+          </div>
+          <div class="form-group">
+            <div class="unselectable-label">Correct words</div>
+            <textarea id="id_form-correct_words" name="correct_words">{{ form.correct_words.value|default_if_none:'' }}</textarea>
+            <small class="form-text">Input words, each separated by a single space</small>
+          </div>
+          <button type="submit" class="create-btn">Create</button>
+        </form>
+        </div>
     </div>
-    <div class="form-group">
-      {{ form.sentence.label_tag }}
-      {{ form.sentence }}
-    </div>
-    <div class="form-group">
-      {{ form.words.label_tag }}
-      {{ form.words }}
-    </div>
-    <div class="form-group">
-      {{ form.correct_words.label_tag }}
-      {{ form.correct_words }}
-    </div>
-    <button type="submit">Create</button>
-  </form>
+  </div>
 {% endblock %}

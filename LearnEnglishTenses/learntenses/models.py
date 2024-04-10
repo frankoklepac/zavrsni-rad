@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django import forms
 
 
 class UserProfile(models.Model):
@@ -79,3 +80,10 @@ class UserTask(models.Model):
     def mark_as_completed(self):
         self.completed = True
         self.save()
+
+class TaskForm(forms.Form):
+    tense = forms.CharField(required=True)
+    name = forms.CharField(required=True)
+    sentence = forms.CharField(widget=forms.Textarea, required=True)
+    words = forms.CharField(widget=forms.Textarea, required=True)
+    correct_words = forms.CharField(widget=forms.Textarea, required=True)
