@@ -1,14 +1,33 @@
-
 {% extends 'learntenses/base.html' %}
 
+{% block extra_css %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'learntenses/styles/profile.css' %}">
+{% endblock %}
+
 {% block content %}
+
+
+<div class="profile-container">
+  <div class="profile-header">
+    <div>
+      <h2>Hello, {{request.user.userprofile.name.split.1}}!</h2>
+      <img class="icon-joined" src="{% static 'learntenses/images/calendar.png' %}" alt="">Joined {{ request.user.date_joined|date:"F Y" }}
+    </div>
+    <div>
+      <a href="{% url 'home:edit_profile' %}">Edit your profile</a>
+    </div>
+  </div>
+  <div class="profile-body">
+
+  </div>
+</div>
 <h2>Hello, {{ request.user.username }} this is your profile</h2>
   <p>Username: {{ request.user.username }}</p>
   <p>Email: {{ request.user.email }}</p>
   <p>Name: {{ request.user.userprofile.name }}</p>
   <p>Age: {{ request.user.userprofile.age }}</p>
   <p>Date joined: {{ request.user.date_joined }}</p>
-  <a href="{% url 'home:edit_profile' %}">Edit your profile</a>
   
 <h1>Statistics</h1>
 {% for tense in user.userprofile.completed_tasks_by_tense %}

@@ -1,0 +1,24 @@
+.profile-container {
+  display:flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.profile-header{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between; 
+  margin: 0;
+  padding: 0;
+  border-bottom: 2px solid #F49F0A;
+}
+
+.profile-header img{
+  display:inline;
+}
+
+.icon-joined {
+  width: 25px;
+}
