@@ -12,26 +12,32 @@
   <div class="profile-header">
     <div>
       <h2>Hello, {{request.user.userprofile.name.split.1}}!</h2>
-      <img class="icon-joined" src="{% static 'learntenses/images/calendar.png' %}" alt="">Joined {{ request.user.date_joined|date:"F Y" }}
+      <div class="joined-info">
+        <img class="icon-joined" src="{% static 'learntenses/images/calendar.png' %}" alt="">
+        <p>Joined {{ request.user.date_joined|date:"F Y" }}</p>
+      </div>  
     </div>
     <div>
-      <a href="{% url 'home:edit_profile' %}">Edit your profile</a>
+      <div class="edit-profile">
+        <a href="{% url 'home:edit_profile' %}">
+          <div class="edit-info">
+            <img class="edit-icon" src="{% static 'learntenses/images/edit.png' %}" alt="">
+            <p>Edit profile</p>
+          </div>
+        </a>
+      </div>
     </div>
   </div>
   <div class="profile-body">
-
+    <div>
+     <img class="stats-icon" src="{% static 'learntenses/images/statistics.png' %}" alt=""> 
+      Statistics
+    </div>
+    <h1>Statistics</h1>
+    {% for tense in user.userprofile.completed_tasks_by_tense %}
+        <p>{{ tense.task__tense }}: {{ tense.count }}</p>
+    {% endfor %}
   </div>
-</div>
-<h2>Hello, {{ request.user.username }} this is your profile</h2>
-  <p>Username: {{ request.user.username }}</p>
-  <p>Email: {{ request.user.email }}</p>
-  <p>Name: {{ request.user.userprofile.name }}</p>
-  <p>Age: {{ request.user.userprofile.age }}</p>
-  <p>Date joined: {{ request.user.date_joined }}</p>
-  
-<h1>Statistics</h1>
-{% for tense in user.userprofile.completed_tasks_by_tense %}
-    <p>{{ tense.task__tense }}: {{ tense.count }}</p>
-{% endfor %}
+</div>  
 
 {% endblock %}

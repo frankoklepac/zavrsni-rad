@@ -1,3 +1,7 @@
+body {
+  color: #2E2F2F;
+}
+
 .profile-container {
   display:flex;
   flex-direction: column;
@@ -10,15 +14,50 @@
   display:flex;
   flex-direction: row;
   justify-content: space-between; 
-  margin: 0;
-  padding: 0;
+  align-items: center;
   border-bottom: 2px solid #F49F0A;
+  padding-left: 50px;
 }
 
-.profile-header img{
-  display:inline;
+.joined-info {
+  display: flex;
+  align-items: center;
 }
 
 .icon-joined {
+  width: 30px;
+  margin-right: 10px;
+}
+
+.profile-header h2 {
+  margin-bottom: 10px;
+}
+
+.joined-info{
+  padding-bottom: 18px;
+}
+
+.edit-profile {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 50px;
+}
+
+.edit-info {
+  display: flex;
+  align-items: center;
+}
+
+.edit-icon {
+  width: 25px;
+  margin-right: 10px;
+}
+
+.edit-profile a {
+  color: #2E2F2F;
+  text-decoration: none;
+}
+
+.stats-icon{
   width: 25px;
 }
