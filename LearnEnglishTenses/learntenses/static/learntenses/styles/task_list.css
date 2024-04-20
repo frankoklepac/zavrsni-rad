@@ -22,7 +22,7 @@ ul {
   padding: 0;
 }
 
-a {
+.task-name a{
   text-decoration: none;
 }
 
