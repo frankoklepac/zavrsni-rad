@@ -17,6 +17,8 @@ body {
   align-items: center;
   border-bottom: 2px solid #F49F0A;
   padding-left: 50px;
+  margin: 0;
+  height: 130px;
 }
 
 .joined-info {

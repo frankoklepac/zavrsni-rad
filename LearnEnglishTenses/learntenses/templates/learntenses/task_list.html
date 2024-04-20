@@ -1,18 +1,40 @@
 {% extends 'learntenses/base.html' %}
 
+{% block extra_css %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'learntenses/styles/task_list.css' %}">
+{% endblock %}
+
 {% block content %}
-  <h2>{{ tense_name }} Tasks</h2>
-  <ul>
-    {% for user_task in user_tasks %}
-        <li style="color: {{ user_task.locked|yesno:'red,blue' }};">
-          {% if not user_task.locked %}
-            <a href="{% url 'home:task_detail' user_task.task.tense user_task.task.id %}">
-              {{ user_task.task.name }}
-            </a>
-          {% else %}
-            {{ user_task.task.name }}
-          {% endif %}
-        </li>
-    {% endfor %}
-  </ul>
+  <div class="tasks-container">
+    <div class="tasks-header">
+      <h1>{{ tense_name }} Tasks</h1>
+    </div>
+    <div class="task-list">
+      <ul>
+        {% for user_task in user_tasks %}
+            <li style="color: {{ user_task.locked|yesno:'red,blue' }};">
+              <div class="task-item">  
+                <div class="task-icon">  
+                  {% if not user_task.locked %}
+                    <img src="{% static 'learntenses/images/unlocked.png' %}" class="task-icon"> 
+                  {% else %}
+                    <img src="{% static 'learntenses/images/locked.png' %}" class="task-icon"> 
+                  {% endif %}
+                </div>  
+                <div class="task-name">  
+                  {% if not user_task.locked %}
+                    <a href="{% url 'home:task_detail' user_task.task.tense user_task.task.id %}">
+                      Task {{ user_task.task.name }}
+                    </a>
+                  {% else %}
+                    Task {{ user_task.task.name }}
+                  {% endif %}
+                </div>  
+              </div>  
+            </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
 {% endblock %}

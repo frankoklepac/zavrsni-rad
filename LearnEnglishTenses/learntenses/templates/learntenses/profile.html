@@ -36,7 +36,7 @@
     {% for tense in user.userprofile.completed_tasks_by_tense %}
       <div class="tense" data-tense="{{ tense.task__tense }}">
           <p>{{ tense.task__tense }}</p>
-          <div class="progress-bar" style="width: {{ tense.count|mul:16.67 }}%;"></div>
+          <p>{{tense.count}}</p>
       </div>
     {% endfor %}
   </div>

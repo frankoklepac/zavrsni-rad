@@ -1,0 +1,32 @@
+.tasks-header{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between; 
+  align-items: center;
+  border-bottom: 2px solid #F49F0A;
+  padding-left: 50px;
+  height: 130px;
+  color: #2E2F2F;
+} 
+
+.task-list{
+  padding-left: 50px;
+}
+
+.task-icon {
+  width: 50px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.task-item {
+  display: flex;  
+  align-items: center;  
+}

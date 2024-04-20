@@ -21,3 +21,4 @@ function autoExpand(element) {
 sentenceField.addEventListener('input', () => autoExpand(sentenceField));
 wordsField.addEventListener('input', () => autoExpand(wordsField));
 correctWordsField.addEventListener('input', () => autoExpand(correctWordsField));
+
