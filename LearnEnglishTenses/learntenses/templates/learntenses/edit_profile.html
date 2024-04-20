@@ -8,10 +8,12 @@
     <title>Edit your profile</title>
   </head>
   <body>
+    <div class="back-button">
+      <a href="{% url 'home:profile' %}">
+        <button class="back-btn">Back</button>
+      </a>
+    </div>
     <div class="edit-profile-header">
-      <div class="back-button">
-        <a href="{% url 'home:profile' %}">Back</a>
-      </div>
       <h2>Edit your profile</h2>
     </div>
     <div class="edit-profile-container">
