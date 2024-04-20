@@ -29,15 +29,40 @@
     </div>
   </div>
   <div class="profile-body">
-    <div>
+    <div class="stats">
      <img class="stats-icon" src="{% static 'learntenses/images/statistics.png' %}" alt=""> 
       Statistics
     </div>
-    <h1>Statistics</h1>
     {% for tense in user.userprofile.completed_tasks_by_tense %}
-        <p>{{ tense.task__tense }}: {{ tense.count }}</p>
+      <div class="tense" data-tense="{{ tense.task__tense }}">
+          <p>{{ tense.task__tense }}</p>
+          <div class="progress-bar" style="width: {{ tense.count|mul:16.67 }}%;"></div>
+      </div>
     {% endfor %}
   </div>
 </div>  
+
+<script>
+  var tenseMapping = {
+      'PS': 'Present Simple',
+      'PC': 'Present Continuous',
+      'PP': 'Present Perfect',
+      'PaS': 'Past Simple',
+      'PaC': 'Past Continuous',
+      'PaP': 'Past Perfect',
+      'FS': 'Future Simple',
+      'FC': 'Future Continuous',
+      'FP': 'Future Perfect',
+  };
+
+  var tenseElements = document.getElementsByClassName('tense');
+
+  for (var i = 0; i < tenseElements.length; i++) {
+      var tenseElement = tenseElements[i];
+      var tense = tenseElement.getAttribute('data-tense');
+      var fullForm = tenseMapping[tense];
+      tenseElement.getElementsByTagName('p')[0].textContent = fullForm;
+  }
+</script>
 
 {% endblock %}

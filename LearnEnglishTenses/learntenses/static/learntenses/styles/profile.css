@@ -58,6 +58,38 @@ body {
   text-decoration: none;
 }
 
+.profile-body {
+  padding-left: 50px;
+}
+
+.stats {
+  display: flex;
+  align-items: center;
+  font-size: 27px;
+  font-weight: bold;
+  padding-top: 50px;
+}
+
+
 .stats-icon{
-  width: 25px;
+  width: 47px;
+  padding-right: 10px;
+}
+
+.tense {
+  width: 300px;
+  overflow: hidden;
+  background-color: #f3f3f3;
+  margin-bottom: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.tense p {
+  margin: 0 0 10px;
+}
+
+.progress-bar {
+  height: 20px;
+  background-color: #4caf50;
 }
