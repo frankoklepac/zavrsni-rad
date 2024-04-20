@@ -33,12 +33,44 @@
      <img class="stats-icon" src="{% static 'learntenses/images/statistics.png' %}" alt=""> 
       Statistics
     </div>
-    {% for tense in user.userprofile.completed_tasks_by_tense %}
-      <div class="tense" data-tense="{{ tense.task__tense }}">
-          <p>{{ tense.task__tense }}</p>
-          <p>{{tense.count}}</p>
+  {% for tense in user.userprofile.completed_tasks_by_tense %}
+    <div class="tense-stats">
+      <div class="tense-header">
+        <div class="tense" data-tense="{{ tense.task__tense }}">
+          <div class="tense-name">
+            <p>{{ tense.task__tense }}</p>
+          </div>
+        </div>
+        <div>
+          {% if tense.count == 6 %}
+            <img src="{% static 'learntenses/images/checked-checkbox.png' %}" class="checkbox-icon" alt="All tasks completed"> 
+          {% else %}
+            <img src="{% static 'learntenses/images/unchecked-checkbox.png' %}" class="checkbox-icon" alt="Tasks not completed"> 
+          {% endif %}
+        </div>
       </div>
-    {% endfor %}
+      <div class="tense-progress">
+        <div class="progress-num">
+          {{ tense.count }} out of 6 tasks solved
+        </div>
+        <div class="progress-bar">
+          {% if tense.count == 1 %}
+            <div class="progress-bar-fill" style="width: 16.67%;"></div>
+          {% elif tense.count == 2 %}
+            <div class="progress-bar-fill" style="width: 33.33%;"></div>
+          {% elif tense.count == 3 %}
+            <div class="progress-bar-fill" style="width: 50%;"></div>
+          {% elif tense.count == 4 %}
+            <div class="progress-bar-fill" style="width: 66.67%;"></div>
+          {% elif tense.count == 5 %}
+            <div class="progress-bar-fill" style="width: 83.33%;"></div>
+          {% elif tense.count == 6 %}
+            <div class="progress-bar-fill" style="width: 100%;"></div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  {% endfor %}
   </div>
 </div>  
 

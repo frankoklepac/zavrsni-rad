@@ -13,7 +13,7 @@
     <div class="task-list">
       <ul>
         {% for user_task in user_tasks %}
-            <li style="color: {{ user_task.locked|yesno:'red,blue' }};">
+            <li>
               <div class="task-item">  
                 <div class="task-icon">  
                   {% if not user_task.locked %}
@@ -22,9 +22,9 @@
                     <img src="{% static 'learntenses/images/locked.png' %}" class="task-icon"> 
                   {% endif %}
                 </div>  
-                <div class="task-name">  
+                <div class="task-name" style="color: {{ user_task.locked|yesno:'#A1B5B5,#2E2F2F' }};">  
                   {% if not user_task.locked %}
-                    <a href="{% url 'home:task_detail' user_task.task.tense user_task.task.id %}">
+                    <a href="{% url 'home:task_detail' user_task.task.tense user_task.task.id %}" style="color: inherit;"> 
                       Task {{ user_task.task.name }}
                     </a>
                   {% else %}
