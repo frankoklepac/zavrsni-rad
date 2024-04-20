@@ -24,10 +24,18 @@ class UserProfileEditForm(forms.ModelForm):
         model = UserProfile
         fields = ['name', 'age']
 
+    def __init__(self, *args, **kwargs):
+        super(UserProfileEditForm, self).__init__(*args, **kwargs)
+        self.label_suffix = "" 
+
 class UserEditForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'email']
+
+    def __init__(self, *args, **kwargs):
+        super(UserEditForm, self).__init__(*args, **kwargs)
+        self.label_suffix = "" 
 
 class TaskForm(forms.ModelForm):
     class Meta:
