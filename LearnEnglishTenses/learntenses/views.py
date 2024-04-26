@@ -15,7 +15,7 @@ from django.db import IntegrityError
 
 
 def index(request):
-    return render(request, 'learntenses/base.html')
+    return render(request, 'learntenses/homepage.html')
 
 def register(request):
     if request.method == 'POST':
