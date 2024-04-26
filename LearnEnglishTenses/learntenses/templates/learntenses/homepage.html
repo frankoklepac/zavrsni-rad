@@ -1,0 +1,54 @@
+{% extends 'learntenses/base.html' %}
+
+{% block extra_css %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'learntenses/styles/homepage.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="homepage-container">
+  <div class="homepage-header">
+    <h2>Welcome, {{request.user.userprofile.name.split.1}}!</h2>
+  </div>
+  <div class="homepage-body">
+    <div class="first-row">
+      <div>
+        <img class="illustration" src="{% static 'learntenses/images/whyus.png' %}" alt="">
+      </div>
+      <div>
+        <h3>Why us?</h3>
+        <ul>
+          <li><span>Interactive learning</span> - Interactive exercises</li>
+          <li><span>Progress tracking</span> - Monitor your progress on your profile dashboard</li>
+          <li><span>Free and easy to use</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="second-row">
+      <div>
+        <h3>The navigation menu consists of: </h3>
+        <ul>
+          <li><span>Home</span> - Returns you here, to the homepage</li>
+          <li><span>Learn</span> - Explore different English tenses
+            <ul>
+              <li>Press"Learn" to select a specific tense</li>
+            </ul>
+          </li>
+          <li><span>Solve tasks</span> - Test your knowledge with exercises
+            <ul>
+              <li>Press"Solve tasks" to select a specific tense</li>
+            </ul>
+          </li>
+          <li><span>Profile</span> - View your overall progress for each tense</li>
+          <li><span>Logout</span> - Sign out of your account</li>
+      </div>
+      <div>
+        <img class="illustration" src="{% static 'learntenses/images/help.png' %}" alt="">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
