@@ -93,3 +93,18 @@ body {
   background-color: #55A7D1;
   color: white;
 }
+
+.icon-credit {
+  position: absolute;
+  bottom: 0;
+  background-color: #f8f9fa; 
+  color: #333; 
+  padding: 10px;
+  text-align: center;
+}
+
+.small-text {
+  font-size: 10px;
+  color: #333; 
+  text-align: center;
+}
