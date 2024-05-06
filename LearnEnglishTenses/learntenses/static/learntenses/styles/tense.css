@@ -1,0 +1,65 @@
+body {
+  color: #2E2F2F;
+}
+
+.learn-container {
+  display:flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.learn-header{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between; 
+  align-items: center;
+  border-bottom: 2px solid #F49F0A;
+  padding-left: 50px;
+  margin: 0;
+  height: 130px;
+}
+
+.art {
+  width: 225px;
+  margin: 0;
+  padding: 0 110px 0 0;
+}
+
+.point {
+  width:  30px;
+}
+
+.learn-header h2 {
+  font-size: 30px;
+}
+
+.learn-body {
+  display: flex;
+  flex-direction: column;
+  padding-left: 50px;
+  padding-right: 40px;
+  margin: 0;
+}
+
+.definition {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 90%;
+}
+
+.definiton p{
+  font-size: 20px;
+}
+
+.definition p span:first-of-type {
+  font-weight: bold;
+}
+
+.definition p span:nth-last-of-type(1),
+.definition p span:nth-last-of-type(2) {
+  font-weight: bold;
+  font-style: italic;
+}

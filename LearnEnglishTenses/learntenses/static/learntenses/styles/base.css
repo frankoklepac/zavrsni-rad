@@ -67,7 +67,7 @@ body {
   position: relative;
 }
 
-#tasks {
+#tasks, #tenses {
   position: absolute;
   left: 100%; 
   top: 0; 
@@ -82,14 +82,14 @@ body {
   border-radius: 10px;
 }
 
-#tasks a {
+#tasks a, #tenses a{
   padding: 7px;  
   margin: 0;  
   text-align: center;  
   display:block;
 }
 
-#tasks a:hover {
+#tasks a:hover, #tenses a:hover{
   background-color: #55A7D1;
   color: white;
 }
@@ -108,3 +108,5 @@ body {
   color: #333; 
   text-align: center;
 }
+
+
