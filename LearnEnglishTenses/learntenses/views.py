@@ -195,3 +195,7 @@ def edit_task(request, task_id):
     else:
         form = TaskForm(instance=task)
     return render(request, 'learntenses/edit_task.html', {'form': form})
+
+def learn_tense(request, tense_name):
+    template_name = f'learntenses/learn_{tense_name}.html'
+    return render(request, template_name)
