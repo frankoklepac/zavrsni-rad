@@ -4,6 +4,13 @@ document.getElementById('solve-tasks').addEventListener('click', function(event)
   tasks.style.display = tasks.style.display === 'none' ? 'block' : 'none';
 });
 
+document.getElementById('learn-tenses').addEventListener('click', function(event) {
+  event.preventDefault();
+  var tenses = document.getElementById('tenses');
+  tenses.style.display = tenses.style.display === 'none' ? 'block' : 'none';
+});
+
+
 const sentenceField = document.getElementById('id_form-sentence');
 const wordsField = document.getElementById('id_form-words');
 const correctWordsField = document.getElementById('id_form-correct_words');
