@@ -40,10 +40,21 @@
           <img class="icon" src="{% static 'learntenses/images/home.png' %}" alt="">
           Home
         </a>
-        <a href="#">
+        <a href="#" id="learn-tenses">
           <img class="icon" src="{% static 'learntenses/images/learn.png' %}" alt="">
           Learn
         </a>
+        <div id="tenses" style="display: none;">
+          <a href="{% url 'home:learn_tense' 'present_simple' %}">Present Simple</a>
+          <a href="{% url 'home:learn_tense' 'present_continous' %}">Present Continuous</a>
+          <a href="{% url 'home:learn_tense' 'present_simple' %}">Present Perfect</a>
+          <a href="">Past Simple</a>
+          <a href="">Past Continuous</a>
+          <a href="">Past Perfect</a>
+          <a href="">Future Simple</a>
+          <a href="">Future Continuous</a>
+          <a href="">Future Perfect</a>
+        </div>
         <a href="#" id="solve-tasks">
           <img class="icon" src="{% static 'learntenses/images/solve-tasks.png' %}" alt="">
           Solve tasks

@@ -1,0 +1,59 @@
+{% extends 'learntenses/base.html' %}
+
+{% block extra_css %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'learntenses/styles/tense.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="learn-container">
+  <div class="learn-header">
+    <div>
+      <h2>Present simple tense</h2>  
+    </div>
+    <div>
+      <div class="learn-art">
+          <div class="edit-info">
+            <img class="art" src="{% static 'learntenses/images/learn_art.png' %}" alt="">
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="learn-body">
+    <div class="definition">
+      <img class="point" src="{% static 'learntenses/images/point.png' %}" alt="">
+      <p>
+        <span>Present simple</span> is used when an action is happening right now, or when it happens regularly.
+        Depending on the person, the present simple tense is formed by using the root form or by adding <span>s</span> or <span>es</span> to the end.
+      </p>
+    </div>
+    <div class="use-of">
+      <ul>
+        <li>For general truths</li>
+        <li>For habits and routines</li>
+        <li>For scheduled events</li>
+        <li>For facts</li>
+      </ul>
+    </div>
+    <div class="signal-words">
+
+    </div>
+    <div class="form-of">
+
+    </div>
+    <div class="examples">
+      <div class="affirmative-sentences">
+
+      </div>
+      <div class="negative-sentences">
+
+      </div>
+      <div class="questions">
+
+      </div>
+    </div>
+  </div>
+</div>  
+{% endblock %}
