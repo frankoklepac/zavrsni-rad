@@ -28,7 +28,7 @@ body {
 }
 
 .point {
-  width:  30px;
+  width:  35px;
 }
 
 .learn-header h2 {
@@ -50,7 +50,7 @@ body {
   width: 90%;
 }
 
-.definiton p{
+.p-desc{
   font-size: 20px;
 }
 
@@ -62,4 +62,39 @@ body {
 .definition p span:nth-last-of-type(2) {
   font-weight: bold;
   font-style: italic;
+}
+
+.use-of{
+  display:flex;
+  flex-direction: column;
+}
+
+.use-of div{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.use-of-ul {
+  list-style-type: decimal; 
+  margin-top: 10px;
+}
+
+.use-of-ul li {
+  font-size: 16px;
+  line-height: 27px;
+}
+
+.list-item {
+  font-weight: bold;
+}
+
+.infinitive{
+  color: #55a5d2;
+  font-weight: bold;
+}
+
+.ending{
+  color: #dd961e;
+  font-weight: bold;
 }
