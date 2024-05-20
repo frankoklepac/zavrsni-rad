@@ -1,22 +1,44 @@
 {% extends 'learntenses/base.html' %}
+{% load replace_filter %}
+{% block extra_css %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'learntenses/styles/task_detail.css' %}">
+{% endblock %}
 
 {% block content %}
     {% load static %}
-    <h1>Task {{ task.name }}</h1>
-    <p>Level : {{ task.level }}</p>
-    <p>Tense: {{ task.get_tense_display }}</p>
-    <p>Sentence: {{ task.sentence }}</p>
-    {% for word in task.words.split %}
-        <button class="word-button" data-word="{{ word }}">{{ word }}</button>
-    {% endfor %}
-    <br>
-    <p>Correct Words: {{ task.correct_words }}</p>
-    <br>
-    <p id="selected-words" style="display: block;">Selected words:</p>
-    <br>
-    <button class="check-button" data-task-id="{{task.id}}" data-level="{{task.level}}" data-tense="{{task.tense}}" style="display:block;" data-correct-words="{{task.correct_words}}">Check</button>
-    <button id="next-task-button" style="display: none;"></button>
-    <p id ="result"></p>
+    
+    <div class="solve-task-container">
+        <div class="solve-task-header">
+            <h1>{{ task.get_tense_display }} Tense</h1>
+        </div>
+        <div class="solve-task-body">
+            <div class="task-name">
+                <div>
+                    <img src="{% static 'learntenses/images/task.png' %}" class="icon" alt="">
+                </div>
+                <div>
+                    <h1>Task {{ task.name }}</h1>
+                </div>
+            </div>
+            <div class="task-text">
+                <p>{{ task.sentence|safe }}</p>
+            </div>
+            <div class="task-options">
+                {% for word in task.words.split %}
+                <button class="word-button" data-word="{{ word }}">{{ word }}</button>
+                {% endfor %}
+            </div>
+            <br>
+            <p>Correct Words: {{ task.correct_words }}</p>
+            <br>
+            <p id="selected-words" style="display: block;">Selected words:</p>
+            <br>
+            <button class="check-button" data-task-id="{{task.id}}" data-level="{{task.level}}" data-tense="{{task.tense}}" style="display:block;" data-correct-words="{{task.correct_words}}">Check</button>
+            <button id="next-task-button" style="display: none;"></button>
+            <p id ="result"></p>            
+        </div>
+    </div>
     
     <script>
         function getCookie(name) {
@@ -35,14 +57,36 @@
         }
         let clickedWords = [];
         const selectedWordsElement = document.getElementById('selected-words');
+        const taskText = document.querySelector('.task-text p');
+        const originalText = taskText.innerHTML;
+        const textArray = originalText.split(' ');
+        const placeholderIndices = textArray.reduce((indices, word, index) => word === '_____' ? [...indices, index] : indices, []);
+        const usedIndices = [];
+
         document.querySelectorAll('.word-button').forEach(button => {
             button.addEventListener('click', () => {
                 let word = button.textContent;
                 let index = clickedWords.indexOf(word);
                 if (index === -1) {
+                    const blankElement = document.querySelector('.blank');
+                    if (!blankElement) {
+                        return;
+                    }
                     clickedWords.push(word);
+                    blankElement.textContent = word;
+                    blankElement.classList.remove('blank');
+                    blankElement.classList.add('filled');
+                    button.classList.add('selected')
                 } else {
                     clickedWords.splice(index, 1);
+                    const filledElement = Array.from(document.querySelectorAll('.filled')).find(element => element.textContent === word);
+                    if (filledElement) {
+                        filledElement.textContent = '_____';
+                        filledElement.classList.remove('filled');
+                        filledElement.classList.add('blank');
+                        button.classList.remove('selected');
+
+                    }
                 }
                 selectedWordsElement.textContent = "Selected words:" + clickedWords.join(' ');
                 console.log(clickedWords); 
@@ -97,7 +141,15 @@
                     resultElement.textContent = 'Incorrect! Try again';
                     selectedWordsElement.textContent = '';
                     clickedWords = [];
-    
+                    document.querySelectorAll('.filled').forEach(element => {
+                        element.textContent = '_____';
+                        element.classList.remove('filled');
+                        element.classList.add('blank');
+                    });
+
+                    document.querySelectorAll('.selected').forEach(element => {
+                        element.classList.remove('selected');
+                    });
                     const taskId = checkButton.getAttribute('data-task-id');
                     fetch(`/home/increment_attempts/${taskId}/`, {
                         method: 'POST',

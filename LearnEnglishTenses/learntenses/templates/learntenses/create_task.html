@@ -31,7 +31,7 @@
           <div class="form-group">
             {{ form.sentence.label_tag }}
             <textarea id="id_form-sentence" name="sentence">{{ form.sentence.value|default_if_none:'' }}</textarea>
-            <small class="form-text">Input the sentence. Use '{}' where the missing word should be.</small>
+            <small class="form-text">Input the sentence. Use '<>' where the missing word should be.</small>
           </div>
           <div class="form-group">
             <div class="unselectable-label">Possible choices</div>

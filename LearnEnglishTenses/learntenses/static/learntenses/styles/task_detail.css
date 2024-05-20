@@ -1,0 +1,64 @@
+.solve-task-container{
+  display:flex;
+  flex-direction: column;
+  user-select: none;
+}
+
+.solve-task-header{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between; 
+  align-items: center;
+  border-bottom: 2px solid #F49F0A;
+  padding-left: 50px;
+  height: 130px;
+  color: #2E2F2F;
+} 
+
+.task-name{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 50px;
+}
+
+.task-name h1{
+  color:#2E2F2F;
+}
+
+.task-text{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-size: 29px;
+  color: #2E2F2F;
+}
+
+.task-options{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.word-button {
+  background-color: #1CB0F6;
+  color: #F9F6EE;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 10px 17px;
+  border: 1px solid #1CB0F6;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  cursor: pointer;
+  user-select: none;
+  margin: 10px;
+}
+
+.selected {
+  background-color: #BBC0C2;
+  color: #ffffff;
+}

@@ -118,7 +118,7 @@
     });
 
     document.querySelectorAll('.task-sentence').forEach(function(span) {
-      span.textContent = span.textContent.replace(/\{\}/g, '_____');
+      span.textContent = span.textContent.replace(/<>/g, '_____');
     });
   </script>
 {% endblock %}
