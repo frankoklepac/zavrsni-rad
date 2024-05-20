@@ -118,12 +118,20 @@ def task_list(request, tense_name):
             user_tasks[i].locked = not user_tasks[i-1].completed
     return render(request, 'learntenses/task_list.html', {'tasks': tasks, 'user_tasks': user_tasks, 'tense_name': tense_name_mapping.get(tense_name)})
 
+def replace_with_span(sentence):
+    words = sentence.split()
+    for i, word in enumerate(words):
+        if '<>' in word:
+            words[i] = word.replace('<>', '<span class="blank" style="font-weight: bold;">_____</span>')
+    return ' '.join(words)
+
 @csrf_exempt
 @require_http_methods(['GET','POST'])
 def task_detail(request, tense, task_id):
     task = get_object_or_404(Task, id=task_id, tense=tense)
     user_profile = UserProfile.objects.get(user=request.user)
     user_task = get_object_or_404(UserTask, user=user_profile, task=task)
+    task.sentence = replace_with_span(task.sentence)
     previous_task = Task.objects.filter(id__lt=task_id, tense=tense).order_by('-id').first()
 
     if not user_task.completed and (previous_task is not None and not UserTask.objects.filter(user=user_profile, task=previous_task, completed=True).exists()):
