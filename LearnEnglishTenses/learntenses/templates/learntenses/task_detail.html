@@ -21,6 +21,9 @@
                     <h1>Task {{ task.name }}</h1>
                 </div>
             </div>
+            <div class="task-result">
+                <p id ="result"></p>            
+            </div>
             <div class="task-text">
                 <p>{{ task.sentence|safe }}</p>
             </div>
@@ -30,13 +33,12 @@
                 {% endfor %}
             </div>
             <br>
-            <p>Correct Words: {{ task.correct_words }}</p>
-            <br>
-            <p id="selected-words" style="display: block;">Selected words:</p>
-            <br>
-            <button class="check-button" data-task-id="{{task.id}}" data-level="{{task.level}}" data-tense="{{task.tense}}" style="display:block;" data-correct-words="{{task.correct_words}}">Check</button>
-            <button id="next-task-button" style="display: none;"></button>
-            <p id ="result"></p>            
+            <div class="task-result-buttons">
+                <button class="check-button" data-task-id="{{task.id}}" data-level="{{task.level}}" data-tense="{{task.tense}}" style="display:block;" data-correct-words="{{task.correct_words}}">Check</button>
+                <button class="next-task-btn" id="next-task-button" style="display: none;"></button>
+            </div>
+            <p id="selected-words" style="display: none;">Selected words:</p>
+            <p style="display:none;">Correct Words: {{ task.correct_words }}</p>
         </div>
     </div>
     
@@ -55,6 +57,7 @@
             }
             return cookieValue;
         }
+
         let clickedWords = [];
         const selectedWordsElement = document.getElementById('selected-words');
         const taskText = document.querySelector('.task-text p');
@@ -111,7 +114,15 @@
                 const currentLevel = parseInt(checkButton.getAttribute('data-level'));
                 if (JSON.stringify(correctWords) === JSON.stringify(clickedWords)) {
                     resultElement.textContent = 'Correct!';
+                    resultElement.classList.add('correct');
+                    resultElement.classList.remove('incorrect');
+                    
+                    document.querySelectorAll('.word-button').forEach(button => {
+                        button.disabled = true;
+                    });
+
                     const taskId = checkButton.getAttribute('data-task-id');
+
                     if (currentLevel === 6) {
                         nextTaskButton.textContent = 'Congratulations!';
                         nextTaskButton.style.display = 'block';
@@ -123,6 +134,7 @@
                         checkButton.style.display = 'none';
                         selectedWordsElement.textContent = '';
                     }
+
                     fetch(`/home/mark_as_completed/${taskId}/`, {
                         method: 'POST',
                         headers: {
@@ -139,6 +151,8 @@
                 }
                 else {
                     resultElement.textContent = 'Incorrect! Try again';
+                    resultElement.classList.add('incorrect');
+                    resultElement.classList.remove('correct');
                     selectedWordsElement.textContent = '';
                     clickedWords = [];
                     document.querySelectorAll('.filled').forEach(element => {
