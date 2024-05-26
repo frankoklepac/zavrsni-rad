@@ -40,7 +40,7 @@
             <ul>
               <li>
                 My friend often 
-                <span class="infinitive">draw</span><span class="ending">s</span> nice posters
+                <span class="infinitive">draw</span><span class="ending">s</span> nice posters.
               </li>
             </ul>
           <li class="list-item">Things in general</li>
@@ -59,21 +59,124 @@
       </div>
     </div>
     <div class="signal-words">
-
+      <div>
+        <img class="point" src="{% static 'learntenses/images/point.png' %}" alt="">
+        <h3>Signal words</h3>
+      </div>
+        <p>Signal words are keywords or phrases that provide clues about the timing and 
+          frequency of the action described in a sentence. 
+          They help identify the tense that should be used.</p>
+      <div>
+        <ul class="signal-words-ul">
+          <li class="list-item">every day</li>
+          <li class="list-item">often</li>
+          <li class="list-item">always</li>
+          <li class="list-item">sometimes</li>
+          <li class="list-item">never</li>
+        </ul>
+      </div>
     </div>
     <div class="form-of">
-
+      <div>
+        <img class="point" src="{% static 'learntenses/images/point.png' %}" alt="">
+        <h3>Form</h3>
+      </div>
+      <p><span class="infinitive">infinitive</span> (3rd person singular <span style="font-style:italic;">he, she, it</span>: <span class="infinitive">infinitive</span> + <span class="ending">-s</span>)</p>
     </div>
     <div class="examples">
       <div class="affirmative-sentences">
-
+        <div>
+          <img class="point" src="{% static 'learntenses/images/point.png' %}" alt="">
+          <h3>Affirmative sentences in the <span style="font-style: italic;">Present Simple</span></h3>
+        </div>
+        <div class="tbl">
+          <table>
+            <thead>
+              <tr>
+                <td>Long forms</td>
+                <td>Contracted forms</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>I <span class="infinitive">read</span> books.</td>
+                <td rowspan="3">not possible</td>
+              </tr>
+              <tr>
+                <td>You <span class="infinitive">read</span> books.</td>
+              </tr>
+              <tr>
+                <td>He <span class="infinitive">read</span><span class="ending">s</span> books.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
       <div class="negative-sentences">
-
+        <div>
+          <img class="point" src="{% static 'learntenses/images/point.png' %}" alt="">
+          <h3>Negative sentences in the <span style="font-style: italic;">Present Simple</span></h3>
+        </div>
+        <div class="tbl">
+          <table>
+            <thead>
+              <tr>
+                <td>Long forms</td>
+                <td>Contracted forms</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>I <span class="auxiliary">do</span> <span class="negation">not</span> <span class="infinitive">clean</span> the room.</td>
+                <td>I <span class="auxiliary">do</span><span class="negation">n't</span> <span class="infinitive">clean</span> the room.</td>
+              </tr>
+              <tr>
+                <td>You <span class="auxiliary">do</span> <span class="negation">not</span> <span class="infinitive">clean</span> the room.</td>
+                <td>You <span class="auxiliary">do</span><span class="negation">n't</span> <span class="infinitive">clean</span> the room.</td>
+              </tr>
+              <tr>
+                <td>He <span class="auxiliary">do</span><span class="ending">es</span> <span class="negation">not</span> <span class="infinitive">clean</span> the room.</td>
+                <td>He <span class="auxiliary">do</span><span class="ending">es</span><span class="negation">n't</span> <span class="infinitive">clean</span> the room.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
       <div class="questions">
-
+        <div>
+          <img class="point" src="{% static 'learntenses/images/point.png' %}" alt="">
+          <h3>Questions in the <span style="font-style: italic;">Present Simple</span></h3>
+        </div>
+        <div class="tbl">
+          <table>
+            <thead>
+              <tr>
+                <td>Long forms</td>
+                <td>Contracted forms</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="auxiliary">Do</span> I <span class="infinitive">play</span> football?</td>
+                <td rowspan="3">not possible</td>
+              </tr>
+              <tr>
+                <td><span class="auxiliary">Do</span> you <span class="infinitive">play</span> football?</td>
+              </tr>
+              <tr>
+                <td><span class="auxiliary">Do</span><span class="ending">es</span> he <span class="infinitive">play</span> football?</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
+    </div>
+    <div class="try-tasks">
+      <img class="point" src="{% static 'learntenses/images/point.png' %}" alt="">
+      <h3>Ready to solve some tasks? Take a shot at <a href="{% url 'home:task_list' 'present_simple' %}" style="text-decoration: none; color:#f49f0a">them</a>!</h3>
+    </div>
+    <div class="grammar-credit">
+      <p>Grammar taken from <a href="https://www.englisch-hilfen.de/en/inhalt_grammar.htm">englisch-hilfen.de</a></p>
     </div>
   </div>
 </div>  

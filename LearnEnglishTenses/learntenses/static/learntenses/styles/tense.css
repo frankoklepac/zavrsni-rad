@@ -69,7 +69,7 @@ body {
   flex-direction: column;
 }
 
-.use-of div{
+.use-of > div{
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -97,4 +97,109 @@ body {
 .ending{
   color: #dd961e;
   font-weight: bold;
+}
+¸
+.signal-words {
+  display: flex;
+  flex-direction: column;
+}
+
+.signal-words > div {
+  display: flex;
+  align-items: center;
+}
+
+.signal-words p {
+  margin: 0;
+  padding-left: 35px;
+  font-size: 18px;
+  width: 90%;
+}
+
+.signal-words-ul{
+  list-style-type: decimal;
+  margin-top: 10px;
+}
+
+.form-of {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-of > div {
+  display: flex;
+  align-items: center;
+}
+
+.form-of p {
+  margin-top: 0;
+  padding-left: 35px;
+  font-size: 18px;
+  width: 90%;
+}
+
+.examples {
+  display: flex;
+  flex-direction: column;
+}
+
+.affirmative-sentences > div {
+  display: flex;
+  align-items: center;
+}
+
+.tbl{
+  padding-left: 35px;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+thead {
+  background-color: #f49f0a;
+  color: white;
+}
+
+.negative-sentences > div {
+  display: flex;
+  align-items: center;
+}
+
+.negation {
+  color: #cd4b3c;
+  font-weight: bold;
+}
+
+.auxiliary {
+  color: #129b50;
+  font-weight: bold;
+}
+
+.questions > div{
+  display: flex;
+  align-items: center;
+}
+
+.try-tasks{
+  display: flex;
+  align-items: center;
+}
+
+.grammar-credit p {
+  position: fixed;
+  padding-right: 10px;
+  right: 0;
+  bottom: 0;
+  font-size: 10px;
 }
