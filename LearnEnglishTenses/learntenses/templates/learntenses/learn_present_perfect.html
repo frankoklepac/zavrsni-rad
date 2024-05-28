@@ -1,0 +1,295 @@
+{% extends 'learntenses/base.html' %}
+
+{% block extra_css %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'learntenses/styles/tense.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="learn-container">
+  <div class="learn-header">
+    <div>
+      <h2>Present perfect tense</h2>  
+    </div>
+    <div>
+      <div class="learn-art">
+          <div class="edit-info">
+            <img class="art" src="{% static 'learntenses/images/learn_art.png' %}" alt="">
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="learn-body">
+    <div class="definition">
+      <img class="point" src="{% static 'learntenses/images/point.png' %}" alt="">
+      <p class="p-desc">
+        The <span>Present perfect</span> tense is used for past actions that are related to or continue into the present. It's easily recognized by the auxiliary verbs have and has.
+      </p>
+    </div>
+    <div class="use-of">
+      <div>
+        <img class="point" src="{% static 'learntenses/images/point.png' %}" alt="">
+        <h3>Present perfect usage</h3>
+      </div>
+      <div>
+        <ul class="use-of-ul">
+          <li class="list-item">Result of actions in the past is important in the present – It is not important when the actions happened</li>
+            <ul>
+              <li>
+                I <span class="auxiliary">have</span> <span class="infinitive">clean</span><span class="ending">ed</span> my room.
+              </li>
+            </ul>
+          <li class="list-item">Recently completed actions</li>
+            <ul>
+              <li>He <span class="auxiliary">has</span> <span class="signal">just</span> <span class="infinitive">play</span><span class="ending">ed</span> handball.</li>
+            </ul>
+          <li class="list-item">States beginning in the past and still continuing</li>
+            <ul>
+              <li>We <span class="auxiliary">have</span> <span class="infinitive">liv</span><span class="ending">ed</span> in Canada <span class="signal">since</span> 2012.</li>
+            </ul>
+          <li class="list-item">Together with lately, recently, yet</li>
+            <ul>
+              <li>I <span class="auxiliary">have</span> <span class="irregular-participle">been</span> to London <span class="signal">recently</span>.</li>
+            </ul>
+        </ul>
+      </div>
+    </div>
+    <div class="signal-words">
+      <div>
+        <img class="point" src="{% static 'learntenses/images/point.png' %}" alt="">
+        <h3>Signal words</h3>
+      </div>
+        <p>Signal words are keywords or phrases that provide clues about the timing and 
+          frequency of the action described in a sentence. 
+          They help identify the tense that should be used.</p>
+      <div>
+        <ul class="signal-words-ul">
+          <li class="list-item">just</li>
+          <li class="list-item">yet</li>
+          <li class="list-item">never</li>
+          <li class="list-item">already</li>
+          <li class="list-item">ever</li>
+          <li class="list-item">so far</li>
+          <li class="list-item">up to now</li>
+          <li class="list-item">recently</li>
+          <li class="list-item">since</li>
+          <li class="list-item">for</li>
+        </ul>
+      </div>
+    </div>
+    <div class="form-of">
+      <div>
+        <img class="point" src="{% static 'learntenses/images/point.png' %}" alt="">
+        <h3>Form</h3>
+      </div>
+      <p><span class="auxiliary">have/has</span> + <span class="irregular-participle">past participle</span>*</p>
+    </div>
+    <div class="examples">
+      <div class="affirmative-sentences">
+        <div>
+          <img class="point" src="{% static 'learntenses/images/point.png' %}" alt="">
+          <h3>Affirmative sentences in the <span style="font-style: italic;">Present Perfect</span> - regular verbs</h3>
+        </div>
+        <div class="tbl">
+          <table>
+            <thead>
+              <tr>
+                <td>Long forms</td>
+                <td>Contracted forms</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>I <span class="auxiliary">have</span> <span class="infinitive">clean</span><span class="ending">ed</span> my room.</td>
+                <td>I'<span class="auxiliary">ve</span> <span class="infinitive">clean</span><span class="ending">ed</span> my room.</td>
+              </tr>
+              <tr>
+                <td>You <span class="auxiliary">have</span> <span class="infinitive">clean</span><span class="ending">ed</span> your room.</td>
+                <td>You'<span class="auxiliary">ve</span> <span class="infinitive">clean</span><span class="ending">ed</span> your room.</td>
+              </tr>
+              <tr>
+                <td>He <span class="auxiliary">has</span> <span class="infinitive">clean</span><span class="ending">ed</span> his room.</td>
+                <td>He'<span class="auxiliary">s</span> <span class="infinitive">clean</span><span class="ending">ed</span> his room.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="affirmative-sentences">
+        <div>
+          <img class="point" src="{% static 'learntenses/images/point.png' %}" alt="">
+          <h3>Affirmative sentences in the <span style="font-style: italic;">Present Perfect</span> - irregular verbs</h3>
+        </div>
+        <div class="tbl">
+          <table>
+            <thead>
+              <tr>
+                <td>Long forms</td>
+                <td>Contracted forms</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>I <span class="auxiliary">have</span> <span class="irregular-participle">gone</span> home</td>
+                <td>I'<span class="auxiliary">ve</span> <span class="irregular-participle">gone</span> home</td>
+              </tr>
+              <tr>
+                <td>You <span class="auxiliary">have</span> <span class="irregular-participle">gone</span> home.</td>
+                <td>You'<span class="auxiliary">ve</span> <span class="irregular-participle">gone</span> home.</td>
+              </tr>
+              <tr>
+                <td>He <span class="auxiliary">has</span> <span class="irregular-participle">gone</span> home.</td>
+                <td>He'<span class="auxiliary">s</span> <span class="irregular-participle">gone</span> home.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="negative-sentences">
+        <div>
+          <img class="point" src="{% static 'learntenses/images/point.png' %}" alt="">
+          <h3>Negative sentences in the <span style="font-style: italic;">Present Perfect</span> - regular verbs</h3>
+        </div>
+        <div class="tbl">
+          <table>
+            <thead>
+              <tr>
+                <td>Long forms</td>
+                <td>Contracted forms</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td rowspan="2">I <span class="auxiliary">have</span> <span class="negation">not</span> <span class="infinitive">clean</span><span class="ending">ed</span> my room.</td>
+                <td>I <span class="auxiliary">have</span><span class="negation">n't</span> <span class="infinitive">clean</span><span class="ending">ed</span> the room.</td>
+              </tr>
+              <tr>
+                <td>I'<span class="auxiliary">ve</span> <span class="negation">not</span> <span class="infinitive">clean</span><span class="ending">ed</span> the room.*</td>
+              </tr>
+              <tr>
+                <td rowspan="2">You <span class="auxiliary">have</span> <span class="negation">not</span> <span class="infinitive">clean</span><span class="ending">ed</span> your room.</td>
+                <td>You <span class="auxiliary">have</span><span class="negation">n't</span> <span class="infinitive">clean</span><span class="ending">ed</span> the room.</td>
+              </tr>
+              <tr>
+                <td>You'<span class="auxiliary">ve</span> <span class="negation">not</span> <span class="infinitive">clean</span><span class="ending">ed</span> the room.*</td>
+              </tr>
+              <tr>
+                <td rowspan="2">He <span class="auxiliary">has</span> <span class="negation">not</span> <span class="infinitive">clean</span><span class="ending">ed</span> his room.</td>
+                <td>He <span class="auxiliary">has</span><span class="negation">n't</span> <span class="infinitive">clean</span><span class="ending">ed</span> the room.</td>
+              </tr>
+              <tr>
+                <td>He'<span class="auxiliary">s</span> <span class="negation">not</span> <span class="infinitive">clean</span><span class="ending">ed</span> the room.*</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="negative-sentences">
+        <div>
+          <img class="point" src="{% static 'learntenses/images/point.png' %}" alt="">
+          <h3>Negative sentences in the <span style="font-style: italic;">Present Perfect</span> - irregular verbs</h3>
+        </div>
+        <div class="tbl">
+          <table>
+            <thead>
+              <tr>
+                <td>Long forms</td>
+                <td>Contracted forms</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td rowspan="2">I <span class="auxiliary">have</span> <span class="negation">not</span> <span class="irregular-participle">gone</span> home.</td>
+                <td>I <span class="auxiliary">have</span><span class="negation">n't</span> <span class="irregular-participle">gone</span> home.</td>
+              </tr>
+              <tr>
+                <td>I'<span class="auxiliary">ve</span> <span class="negation">not</span> <span class="irregular-participle">gone</span> home.*</td>
+              </tr>
+              <tr>
+                <td rowspan="2">You <span class="auxiliary">have</span> <span class="negation">not</span> <span class="irregular-participle">gone</span> home.</td>
+                <td>You <span class="auxiliary">have</span><span class="negation">n't</span> <span class="irregular-participle">gone</span> home.</td>
+              </tr>
+              <tr>
+                <td>You'<span class="auxiliary">ve</span> <span class="negation">not</span> <span class="irregular-participle">gone</span> home.*</td>
+              </tr>
+              <tr>
+                <td rowspan="2">He <span class="auxiliary">has</span> <span class="negation">not</span> <span class="irregular-participle">gone</span> home.</td>
+                <td>He <span class="auxiliary">has</span><span class="negation">n't</span> <span class="irregular-participle">gone</span> home.</td>
+              </tr>
+              <tr>
+                <td>He'<span class="auxiliary">s</span> <span class="negation">not</span> <span class="irregular-participle">gone</span> home.*</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="questions">
+        <div>
+          <img class="point" src="{% static 'learntenses/images/point.png' %}" alt="">
+          <h3>Questions in the <span style="font-style: italic;">Present Perfect</span> - regular verbs</h3>
+        </div>
+        <div class="tbl">
+          <table>
+            <thead>
+              <tr>
+                <td>Long forms</td>
+                <td>Contracted forms</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="auxiliary">Have</span> I <span class="infinitive">clean</span><span class="ending">ed</span> the room?</td>
+                <td rowspan="3">There are no contracted forms.</td>
+              </tr>
+              <tr>
+                <td><span class="auxiliary">Have</span> you <span class="infinitive">clean</span><span class="ending">ed</span> the room?</td>
+              </tr>
+              <tr>
+                <td><span class="auxiliary">Has</span> he <span class="infinitive">clean</span><span class="ending">ed</span> the room?</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="questions">
+        <div>
+          <img class="point" src="{% static 'learntenses/images/point.png' %}" alt="">
+          <h3>Questions in the <span style="font-style: italic;">Present Perfect</span> - irregular verbs</h3>
+        </div>
+        <div class="tbl">
+          <table>
+            <thead>
+              <tr>
+                <td>Long forms</td>
+                <td>Contracted forms</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="auxiliary">Have</span> I <span class="irregular-participle">gone</span> home?</td>
+                <td rowspan="3">There are no contracted forms.</td>
+              </tr>
+              <tr>
+                <td><span class="auxiliary">Have</span> you <span class="irregular-participle">gone</span> home?</td>
+              </tr>
+              <tr>
+                <td><span class="auxiliary">Has</span> he <span class="irregular-participle">gone</span> home?</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="try-tasks">
+      <img class="point" src="{% static 'learntenses/images/point.png' %}" alt="">
+      <h3>Ready to solve some tasks? Take a shot at <a href="{% url 'home:task_list' 'present_perfect' %}" style="text-decoration: none; color:#f49f0a">them</a>!</h3>
+    </div>
+    <div class="grammar-credit">
+      <p>Grammar taken from <a href="https://www.englisch-hilfen.de/en/inhalt_grammar.htm">englisch-hilfen.de</a></p>
+    </div>
+  </div>
+</div>  
+
+{% endblock %}

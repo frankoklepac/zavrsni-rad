@@ -58,12 +58,6 @@ body {
   font-weight: bold;
 }
 
-.definition p span:nth-last-of-type(1),
-.definition p span:nth-last-of-type(2) {
-  font-weight: bold;
-  font-style: italic;
-}
-
 .use-of{
   display:flex;
   flex-direction: column;
@@ -98,7 +92,17 @@ body {
   color: #dd961e;
   font-weight: bold;
 }
-¸
+
+.signal {
+  color: #4bc920;
+  font-weight: bold;
+}
+
+.irregular-participle {
+  color: #6d6fc0;
+  font-weight: bold;
+}
+
 .signal-words {
   display: flex;
   flex-direction: column;
