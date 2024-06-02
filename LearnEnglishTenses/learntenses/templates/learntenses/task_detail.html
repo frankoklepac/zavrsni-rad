@@ -69,13 +69,13 @@
         document.querySelectorAll('.word-button').forEach(button => {
             button.addEventListener('click', () => {
                 let word = button.textContent;
-                let index = clickedWords.indexOf(word);
+                let index = clickedWords.indexOf(button); 
                 if (index === -1) {
                     const blankElement = document.querySelector('.blank');
                     if (!blankElement) {
                         return;
                     }
-                    clickedWords.push(word);
+                    clickedWords.push(button); 
                     blankElement.textContent = word;
                     blankElement.classList.remove('blank');
                     blankElement.classList.add('filled');
@@ -88,11 +88,10 @@
                         filledElement.classList.remove('filled');
                         filledElement.classList.add('blank');
                         button.classList.remove('selected');
-
                     }
                 }
-                selectedWordsElement.textContent = "Selected words:" + clickedWords.join(' ');
-                console.log(clickedWords); 
+                selectedWordsElement.textContent = "Selected words:" + clickedWords.map(button => button.textContent).join(' '); 
+                console.log(clickedWords.map(button => button.textContent)); 
             });
         });
         const nextTaskButton = document.getElementById('next-task-button');
@@ -112,7 +111,8 @@
                 let correctWords = checkButton.dataset.correctWords.split(' ');
                 const resultElement = document.getElementById('result');
                 const currentLevel = parseInt(checkButton.getAttribute('data-level'));
-                if (JSON.stringify(correctWords) === JSON.stringify(clickedWords)) {
+                let clickedWordsText = clickedWords.map(button => button.textContent);
+                if (JSON.stringify(correctWords) === JSON.stringify(clickedWordsText)) {
                     resultElement.textContent = 'Correct!';
                     resultElement.classList.add('correct');
                     resultElement.classList.remove('incorrect');

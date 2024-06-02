@@ -66,9 +66,11 @@
 .task-options{
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-
+  max-width: 80%;
+  margin: 0 auto;
 }
 
 .word-button {
