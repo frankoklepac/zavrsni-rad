@@ -20,12 +20,6 @@ class Task(models.Model):
         ('PS', 'Present Simple'),
         ('PC', 'Present Continuous'),
         ('PP', 'Present Perfect'),
-        ('PaS', 'Past Simple'),
-        ('PaC', 'Past Continuous'),
-        ('PaP', 'Past Perfect'),
-        ('FS', 'Future Simple'),
-        ('FC', 'Future Continuous'),
-        ('FP', 'Future Perfect'),
     ]
     TASK_NAMES = [
         ('1', 'Task 1'),

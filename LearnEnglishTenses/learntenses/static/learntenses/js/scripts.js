@@ -1,12 +1,20 @@
 document.getElementById('solve-tasks').addEventListener('click', function(event) {
   event.preventDefault();
   var tasks = document.getElementById('tasks');
+  var tenses = document.getElementById('tenses');
+  if (tenses.style.display === 'block') {
+    tenses.style.display = 'none';
+  }
   tasks.style.display = tasks.style.display === 'none' ? 'block' : 'none';
 });
 
 document.getElementById('learn-tenses').addEventListener('click', function(event) {
   event.preventDefault();
+  var tasks = document.getElementById('tasks');
   var tenses = document.getElementById('tenses');
+  if (tasks.style.display === 'block') {
+    tasks.style.display = 'none';
+  }
   tenses.style.display = tenses.style.display === 'none' ? 'block' : 'none';
 });
 
