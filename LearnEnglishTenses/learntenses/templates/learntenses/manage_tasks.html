@@ -24,7 +24,8 @@
           <ul>
             {% for task in tasks %}
               <li>
-                Task {{ task.level }}: <span class="task-sentence">{{ task.sentence }}</span>
+                <div class="task-level">Task {{ task.level }}</div>
+                <div class="task-sentence">{{ task.sentence }}</div>
                 <div class = "task-actions">
                   <a href="{% url 'home:edit_task' task.id %}"><button class="edit-task" data-task-id="{{ task.id }}">Edit task</button></a>
                   <button class="delete-task" data-task-id="{{ task.id }}">Delete task</button>
@@ -37,63 +38,6 @@
     {% endfor %}
   </div>
 
-  <div class="tasks-row">
-    {% for tense_code, tasks in tenses.items %}
-      {% if tense_code in past_tenses %}
-        <div class="tasks-column">
-          <h2>
-            {% if tense_code == 'PaS' %}
-              Past Simple Tasks
-            {% elif tense_code == 'PaC' %}
-              Past Continuous Tasks
-            {% elif tense_code == 'PaP' %}
-              Past Perfect Tasks
-            {% endif %}
-          </h2>
-          <ul>
-            {% for task in tasks %}
-              <li>
-                Task {{ task.level }}: <span class="task-sentence">{{ task.sentence }}</span>
-                <div class = "task-actions">
-                  <a href="{% url 'home:edit_task' task.id %}"><button class="edit-task" data-task-id="{{ task.id }}">Edit task</button></a>
-                  <button class="delete-task" data-task-id="{{ task.id }}">Delete task</button>
-                </div>
-              </li>
-            {% endfor %}
-          </ul>
-        </div>
-      {% endif %}
-    {% endfor %}
-  </div>
-
-  <div class="tasks-row">
-    {% for tense_code, tasks in tenses.items %}
-      {% if tense_code in future_tenses %}
-        <div class="tasks-column">
-          <h2>
-            {% if tense_code == 'FS' %}
-              Future Simple Tasks
-            {% elif tense_code == 'FC' %}
-              Future Continuous Tasks
-            {% elif tense_code == 'FP' %}
-              Future Perfect Tasks
-            {% endif %}
-          </h2>
-          <ul>
-            {% for task in tasks %}
-              <li>
-                Task {{ task.level }}: <span class="task-sentence">{{ task.sentence }}</span>
-                <div class = "task-actions">
-                  <a href="{% url 'home:edit_task' task.id %}"><button class="edit-task" data-task-id="{{ task.id }}">Edit task</button></a>
-                  <button class="delete-task" data-task-id="{{ task.id }}">Delete task</button>
-                </div>
-              </li>
-            {% endfor %}
-          </ul>
-        </div>
-      {% endif %}
-    {% endfor %}
-  </div>
 </div>
   
   <script>

@@ -199,10 +199,19 @@ def edit_task(request, task_id):
         form = TaskForm(request.POST, instance=task)
         if form.is_valid():
             form.save()
-            return redirect('home:create_task')
+            return redirect('home:manage_tasks')
     else:
         form = TaskForm(instance=task)
-    return render(request, 'learntenses/edit_task.html', {'form': form})
+
+    tense_mapping = {
+        'PS': 'Present Simple',
+        'PC': 'Present Continuous',
+        'PP': 'Present Perfect',
+    }
+
+    full_tense = tense_mapping.get(task.tense, task.tense)
+
+    return render(request, 'learntenses/edit_task.html', {'form': form, 'full_tense': full_tense})
 
 def learn_tense(request, tense_name):
     template_name = f'learntenses/learn_{tense_name}.html'

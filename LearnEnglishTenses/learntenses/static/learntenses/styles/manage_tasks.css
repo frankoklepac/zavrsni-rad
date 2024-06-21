@@ -4,13 +4,13 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
+  margin-left: 10px;
 }
 
 .tasks-column {
   display: flex;
   flex-direction: column;
   flex: 0 0 calc(33.33% - 20px);
-  border: 1px solid #e0e0e0;
 }
 
 .tasks-column h2 {
@@ -22,8 +22,6 @@
 .task-actions {
   display: flex;
   justify-content: center;
-
-  margin: 10px;
 }
 
 .delete-task, .edit-task {
@@ -70,8 +68,18 @@ ul {
 }
 
 li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   list-style-type: none;
-  border-top: 1px solid #e0e0e0;
-  border-bottom: 1px solid #e0e0e0;
+  border: 1px solid #e0e0e0;
+  padding: 10px; 
+  margin-bottom: 10px; 
+  border-radius: 4px; 
+  background-color: #f9f9f9; 
   width: 100%;
+}
+
+.task-level, .task-sentence {
+  text-align: center;
 }
