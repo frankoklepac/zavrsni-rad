@@ -137,7 +137,7 @@ def task_detail(request, tense, task_id):
     if not user_task.completed and (previous_task is not None and not UserTask.objects.filter(user=user_profile, task=previous_task, completed=True).exists()):
         return HttpResponseForbidden()
 
-    return render(request, 'learntenses/task_detail.html', {'task': task})
+    return render(request, 'learntenses/task_detail.html', {'task': task, 'user_task': user_task, 'attempts_reached' : user_task.check_attempts()})
 
 @csrf_exempt
 def increment_attempts(request, task_id):
@@ -148,7 +148,21 @@ def increment_attempts(request, task_id):
     user_task.attempts += 1
     user_task.save()
 
-    return JsonResponse({'status': 'success'})
+    attempts_reached = user_task.check_attempts()
+
+    return JsonResponse({'status': 'success', 'attempts_reached': attempts_reached})
+
+@csrf_exempt
+def reset_attempts(request, task_id):
+    if request.method == 'POST':
+        try:
+            user_profile = UserProfile.objects.get(user=request.user)
+            user_task = UserTask.objects.get(user=user_profile, task_id=task_id)
+            user_task.reset_attempts()
+            return JsonResponse({'status': 'success'})
+        except UserTask.DoesNotExist:
+            return JsonResponse({'status': 'error', 'message': 'UserTask not found'})
+    return JsonResponse({'status': 'error', 'message': 'Invalid request method'})
 
 @csrf_exempt
 @require_POST
