@@ -75,6 +75,13 @@ class UserTask(models.Model):
         self.completed = True
         self.save()
 
+    def check_attempts(self):
+        return self.attempts>=3
+    
+    def reset_attempts(self):
+        self.attempts = 0
+        self.save()
+
 class TaskForm(forms.Form):
     tense = forms.CharField(required=True)
     name = forms.CharField(required=True)
