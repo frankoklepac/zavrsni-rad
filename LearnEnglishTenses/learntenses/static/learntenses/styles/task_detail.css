@@ -127,3 +127,36 @@
   user-select: none;
   margin: 10px;
 }
+
+.attempts-message {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  padding-left: 50px;
+}
+
+.hint-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;  
+}
+
+.hint-header h{
+  color: #2E2F2F;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.hint-text {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  font-size: 17px;
+  padding:0;
+  margin-left: 10px;
+  color: #2E2F2F;
+  text-align: center;
+}

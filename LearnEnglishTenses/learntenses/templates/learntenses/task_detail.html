@@ -34,13 +34,24 @@
             </div>
             <br>
             <div class="task-result-buttons">
-                <button class="check-button" data-task-id="{{task.id}}" 
-                data-level="{{task.level}}" data-tense="{{task.tense}}" 
-                style="display:block;" data-correct-words="{{task.correct_words}}">Check</button>
+                <button class="check-button" data-task-id="{{task.id}}" data-level="{{task.level}}" data-tense="{{task.tense}}" style="display:block;" data-correct-words="{{task.correct_words}}">Check</button>
                 <button class="next-task-btn" id="next-task-button" style="display: none;"></button>
             </div>
             <p id="selected-words" style="display: none;">Selected words:</p>
             <p style="display:none;">Correct Words: {{ task.correct_words }}</p>
+            <div class="attempts-message" id="attempts-message" style="display: none;"> 
+                <div class="hint-header">
+                    <div>
+                        <img src="{% static 'learntenses/images/hint.png' %}" class="icon" alt="">
+                    </div>
+                    <div>
+                        <h>Hint</h>
+                    </div>
+                </div>
+                <div class="hint-text">
+                    <span id="hint"></span>
+                </div>
+            </div>
         </div>
     </div>
     
@@ -61,6 +72,7 @@
         }
 
         let clickedWords = [];
+        let attempts = 0;
         const selectedWordsElement = document.getElementById('selected-words');
         const taskText = document.querySelector('.task-text p');
         const originalText = taskText.innerHTML;
@@ -148,10 +160,25 @@
                     .then(data => {
                         if (data.status === 'success') {
                             console.log('Task marked as completed');
+                            fetch(`/home/reset_attempts/${taskId}/`, {
+                                method: 'POST',
+                                headers: {
+                                    'X-CSRFToken': getCookie('csrftoken'),
+                                    'Content-Type': 'application/json'
+                                }
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.status === 'success') {
+                                    console.log('Attempts reset successfully');
+                                    document.getElementById('attempts-message').style.display = 'none';
+                                }
+                            });
                         }
                     })
                 }
                 else {
+                    attempts+=1;
                     resultElement.textContent = 'Incorrect! Try again';
                     resultElement.classList.add('incorrect');
                     resultElement.classList.remove('correct');
@@ -162,7 +189,16 @@
                         element.classList.remove('filled');
                         element.classList.add('blank');
                     });
-
+                    if (attempts >= 3) {
+                        document.getElementById('attempts-message').style.display = 'block';
+                        let hintWord='';
+                        if ([1, 3, 5].includes(currentLevel)) {
+                            hintWord = `The first word is ${correctWords[0]}`;
+                        } else {
+                            hintWord = `The second word is ${correctWords[1]}`;
+                        }
+                        document.getElementById('hint').textContent = hintWord;
+                    }
                     document.querySelectorAll('.selected').forEach(element => {
                         element.classList.remove('selected');
                     });
@@ -177,7 +213,10 @@
                     .then(response => response.json())
                     .then(data => {
                         if (data.status === 'success') {
-                            console.log('Attempts incremented');
+                            if (data.attempts_reached) {
+                                document.querySelector('.attempts-message').style.display = 'block';
+
+                            }
                         }
                     });
                 }
