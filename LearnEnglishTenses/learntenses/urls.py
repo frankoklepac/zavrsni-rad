@@ -16,6 +16,7 @@ urlpatterns = [
     path('<str:tense>/task/<int:task_id>', views.task_detail, name='task_detail'),
     path('increment_attempts/<int:task_id>/', views.increment_attempts, name='increment_attempts'),
     path('mark_as_completed/<int:task_id>/', views.mark_as_completed, name='mark_as_completed'),
+    path('reset_attempts/<int:task_id>/', views.reset_attempts, name='reset_attempts'),
     path('create_task/', views.create_task, name='create_task'),
     path('delete_task/<int:task_id>/', views.delete_task, name='delete_task'),
     path('edit_task/<int:task_id>/', views.edit_task, name='edit_task'),
